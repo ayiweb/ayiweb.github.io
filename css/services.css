@@ -1,0 +1,328 @@
+/* Hero Section */
+#hero {
+    background: url('background-image.jpg') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 100%;
+    text-align: left;
+    padding: 1px 2px;
+    background-color: #f4f4f4;
+}
+
+.hero-container {
+    max-width: 70%;
+    padding: 10px 30px;
+    margin: 0 auto;
+}
+
+.heroimage {
+    margin: 5px;
+}
+
+.hero-container h1 {
+    font-size: 36px;
+    margin: 2px 0 5px;
+    color: blue;
+}
+
+.hero-container h2 {
+    font-size: 22px;
+    margin-bottom: 5px;
+    color: orangered;
+}
+
+.hero-container p {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+/* Button Styling */
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    text-decoration: none;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+#hero .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+/* Content Section */
+.content {
+    padding: 20px;
+}
+
+.title h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.cardservices {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+section {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    position: relative;
+}
+
+/* Service Section */
+.service {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    overflow: hidden;
+}
+
+.service-image {
+    height: 150px;
+    overflow: hidden;
+    border: 2px solid gray;
+}
+
+.service-image img {
+    max-width: 300px;
+    display: block;
+    height: auto;
+    object-fit: fill;
+}
+
+.service-text {
+    padding: 2px;
+    flex: 1;
+}
+
+.service-text ul {
+    padding: 1px;
+    margin: 2px;
+}
+
+.service-text ul li {
+    padding: 2px;
+    margin: 2px;
+    list-style: none;
+}
+
+/* Section Headings */
+section h2 {
+    margin: 4px 2px;
+    color: blue;
+    font-size: 22px;
+}
+
+section h3 {
+    margin: 4px 1px;
+    color: rgb(0, 153, 255);
+}
+
+section h3 strong {
+    color: red;
+}
+
+section h3 span {
+    color: black;
+    text-transform: lowercase;
+    font-size: 11px;
+}
+
+/* Section Logo */
+section .logo {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+/* Icon Styling */
+.icon {
+    margin-right: 5px;
+    font-size: 14px; /* Adjust the size */
+    font-weight: bold; /* Make the icons bold */
+}
+
+.check {
+    color: green; /* Set the color for the checkmark */
+}
+
+.cross {
+    color: red; /* Set the color for the cross */
+}
+
+/* Service Button */
+.service-text button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.service-text button:hover {
+    background-color: #0056b3;
+}
+
+/* Content Details */
+.content-details {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Form Container */
+.form-container {
+    background-color: white;
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.form-container h2 {
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.form-group textarea {
+    height: 100px;
+}
+
+.form-group button {
+    padding: 10px 15px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-group button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    #hero {
+        background: url('background-image.jpg') no-repeat center center/cover;
+        display: block;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        height: 100%;
+        text-align: left;
+        padding: 1px 2px;
+        background-color: #f4f4f4;
+    }
+
+    .hero-container {
+        max-width: 100%;
+        padding: 10px 20px;
+        margin: 0 auto;
+    }
+
+    .hero-container h1 {
+        font-size: 6vw;
+        text-align: center;
+        margin-bottom: 5px;
+        margin-top: 2px;
+    }
+
+    .hero-container p {
+        font-size: 3vw;
+        margin-bottom: 5px;
+    }
+
+    .hero-container h2 {
+        font-size: 4vw;
+        margin-bottom: 5px;
+    }
+
+    .btn-primary {
+        padding: 7px 10px;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+        border-radius: 5px;
+    }
+
+    .cardservices {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .service {
+        display: block;
+        gap: 2px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .service-image img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .service-text {
+        padding: 5px;
+        flex: 1;
+    }
+
+    .service-text h2 {
+        margin-top: 0;
+        font-size: 4vw;
+    }
+
+    .service-text h3 {
+        font-size: 3.6vw;
+    }
+
+    .service-text p {
+        font-size: 3vw;
+    }
+
+    aside {
+        display: none;
+    }
+}

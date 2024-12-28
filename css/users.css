@@ -1,0 +1,236 @@
+body{
+    overflow: hidden;
+    height: 100vh;
+    box-sizing: border-box;
+    background-color: white;
+    padding: 0px;
+    margin: 0px;
+}
+
+
+.custom-dialog {
+    width: 300px;
+    border-radius: 20px;
+    border: 5px solid rgb(0, 102, 255);
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f9f9f9;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+.dialog-content {
+    position: relative;
+    text-align: center;
+}
+
+.close-button {
+    background-color: black;
+    padding: 10px;
+    color: lime;
+    position: relative;
+    top: 0;
+    right: 0;
+    font-size: 20px;
+    cursor: pointer;
+}
+        .container{
+            background-image: url('https://drive.google.com/uc?id=1ISMdEZzI1aSmYhHsdM7vAKhV2JR6jvqE');
+            background-size: cover;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 100vh;
+            background-color: gray;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        main{
+            background-color: white;
+            max-width: 300px;
+        }
+        .image{
+            border: 1px solid blue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .image img{
+            border: 2px solid lime;
+            height: 50px;
+            width: 50px;
+        }
+        #imageInput {
+        display: none; /* Hide the default file input */
+      }
+      
+      .custom-file-input {
+        width: 100%;
+        height: 30px;
+        display: inline-block;
+        padding: 10px 15px;
+        font-size: 16px;
+        text-align: center;
+        font-weight: bold;
+        cursor: pointer;
+        background-color: #051df5;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+      }
+      
+      .custom-file-input:hover {
+        background-color: #45a049;
+      }
+      
+      .custom-file-input:active {
+        background-color: #398439;
+      }
+       label{
+        display: inline-block;
+       }
+       #signup{
+        margin: 10px;
+        padding: 7px;
+        border: 3px solid gray;
+       }
+       #login{
+        display: block;
+        margin: 10px;
+        padding: 7px;
+        border: 3px solid gray;
+       }
+       .input{
+        width: 100%;
+        margin: 6px auto;
+        overflow: hidden;
+        border: 1px solid;
+    }
+    .select, .phone{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 30px;
+    }
+    input{
+        padding: 5px;
+        width: 100%;
+        border: none;
+    }
+    input:focus, select:focus{
+        border: none;
+        outline-style: none;
+    }
+    select {
+        width: 100%;
+        padding: 7px;
+        font-size: 14px;
+        border: none;
+    }
+
+    .flag {
+        font-size: 38px;
+        height: 33px;
+        margin-right: 0px;
+        background-color: gray;
+    }
+    button{
+        background: rgb(0, 145, 255);
+        padding: 7px;
+        color: white;
+        width: 100%;
+        border: none;
+        cursor: pointer;
+    }
+    button:hover{
+        background-color: rgb(0, 136, 255);
+        padding: 8px;
+    }
+    .btnUsers{
+        display: flex;
+        justify-content: space-between;
+    }
+    .spaceBtn{
+        width: 5px;
+    }
+
+       input{
+        margin: 5px;
+        padding: 7px;
+       }
+
+       #showlogin{
+        background-color: orangered;
+        width: fit-content;
+        position: relative;
+        top: 0;
+        margin-top: 0px;
+       }
+
+       #showsignup{
+        background-color: orangered;
+        width: fit-content;
+        position: relative;
+        top: 0;
+        margin-top: 0px;
+       }
+       #showimg{
+        display: none;
+       }
+       
+       .load{
+        display: none;
+       }
+       .gif-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        overflow: hidden;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .gif-container img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+    @media screen and (max-width: 800px){
+        .custom-dialog {
+        width: 200px;
+        border-radius: 20px;
+        border: 5px solid rgb(0, 102, 255);
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #f9f9f9;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1;
+}
+        main{
+            width: 80%;
+        }
+        .input, .select{
+            height: 30px;
+            display: flex;
+            align-items: center;
+        }
+        input{
+            padding: 4px;
+        }
+        select {
+            width: 100%;
+            padding: 15px;
+            font-size: 14px;
+            border: none;
+        }
+    
+    }

@@ -1,0 +1,279 @@
+#searchContainer {
+  display: none;
+}
+
+.header{
+  border: 2px solid red;
+  overflow: hidden;
+  position: relative;
+}
+iframe {
+  margin-top: 20px;
+  width: 100%;
+}
+  /* Ajoutez ici la valeur de la marge supérieure souhaitée */
+header{
+  border: 2px solid red;
+  height: 30px;
+  position: absolute;
+  z-index: 0;
+}
+
+#toggleSearchBtn {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  padding: 3px;
+  margin-left: 3px;
+  background-color: black;
+  color: white;
+}
+
+#toggleSearchBtn i {
+  font-size: 12px; /* Adjust font size as needed */
+}
+
+.search {
+  width: 100%; /* Adjust width as needed */
+  margin: auto;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 0 5px rgba(125, 129, 131, 0.7);
+}
+
+#searchInput {
+  padding: 5px; /* Adjust padding as needed */
+  border: 1px solid #ccc;
+  font-size: 12px;
+  background-color: #f1f1f1;
+  width: 100%;
+}
+
+#searchInput:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.7);
+}
+
+.barfiltre {
+  min-width: 100%;
+  margin: 1px auto;
+  padding: 5px;
+  display: flex;
+  overflow-x: scroll;
+  
+  overflow-y: hidden; /* Pour éviter le défilement vertical */
+  color: white;
+  align-items: left;
+  justify-content: left;
+  border: 1px solid rgb(167, 164, 164);
+  white-space: nowrap; /* Empêche le retour à la ligne des éléments */
+}
+
+.barfiltre button {
+  color: white;
+  min-width: 40px;
+  margin-right: 5px; /* Espacement entre les boutons */
+}
+
+
+.btn {
+  padding: 5px;
+  background-color: #0075fc;
+  color: white;
+  gap: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 12px;
+}
+
+.btn.active {
+  background-color: #ff9100;
+}
+
+
+#anglais {
+  position: static;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  min-height: 100%;
+}
+
+.post {
+  height: max-content;
+  background-color: #fff;
+  border: 1px solid #0095f8;
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 0px;
+  padding-bottom: 0px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.post .img {
+  position: relative;
+  max-height: 70px;
+  overflow: hidden;
+}
+.post .img img{
+  width: 100%;
+  overflow: hidden;
+}
+
+.post .img .categorie {
+  background-color: #0095f8;
+  color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 5px;
+  font-size: 12px;
+}
+
+    /*titre du soustire*/
+  .post h1{
+    color: rgb(0, 81, 255);
+    margin-bottom: 2px;
+    font-size: 14px;
+    text-align: center;
+    white-space: nowrap; /* Prevents wrapping to the next line */
+    overflow: hidden; /* Hides any content that overflows the container */
+    text-overflow: ellipsis; /* Displays an ellipsis (...) to indicate text overflow */
+  }
+  .post p{
+    font-size: 12px;
+  }
+
+  .barall{
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    gap: 5px;
+    padding:1px 3px 1px 3px;
+    border: 1px solid ;
+  }
+  .barlike, .bardislike, .barcomment {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    border: 1px solid gray;
+    align-items: center;
+    justify-content: space-around;
+  }
+  
+  .barlike .btnlike, .bardislike button {
+    border: 1px solid #3498db;
+    background-color: #fff;
+    color: #3498db;
+    padding: 1px 2px;
+    margin:2px 4px 2px 4px;
+    cursor: pointer;
+    font-size: 10px;
+  }
+  .barlike span{
+    color: blue;
+    font-size: 10px;
+  }
+  
+  .barlike .btnlike:hover, .bardislike button:hover {
+    background-color: #3498db;
+    color: #fff;
+  }
+
+  .btnprix {
+    background-color: #ccc;
+    display: flex;
+    align-items: center;
+    align-items: center;
+    border: 0px;
+    padding: 1px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+  
+  .btnprix button {
+    background-color: #3498db;
+    color: white;
+    width: max-content;
+    padding: 1px 5px 1px 5px;
+    border: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 8px;
+  }
+  
+  .btnprix p {
+    width: 100%;
+    background-color: #fffbfb;
+    color: rgb(245, 0, 0);
+    border: opx;
+    padding: 0px;
+    margin: 0;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 0px;
+    
+  }
+  
+  .btnprix p .prix, .btnprix p i {
+    color: rgb(255, 0, 0);
+  }
+  
+
+
+
+
+/* Styles pour les petits écrans (mobiles) */
+@media screen and (max-width: 360px) {
+  #anglais {
+    grid-template-columns: repeat(1, 1fr);
+  }
+ .barfiltre {
+    min-width: 100%;
+    margin: 1px auto;
+    padding: 5px;
+    display: flex;
+    overflow-x: scroll;
+    
+    overflow-y: hidden; /* Pour éviter le défilement vertical */
+    color: white;
+    align-items: left;
+    justify-content: left;
+    border: 1px solid rgb(167, 164, 164);
+    white-space: nowrap; /* Empêche le retour à la ligne des éléments */
+}
+
+.barfiltre button {
+    color: white;
+    min-width: 40px;
+    margin-right: 5px; /* Espacement entre les boutons */
+}
+
+  
+}
+
+/* Styles pour les écrans moyens (mobiles et petites tablettes) */
+@media screen and (min-width: 361px) and (max-width: 600px) {
+  #anglais {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Styles pour les écrans plus grands (tablettes et au-delà) */
+@media screen and (min-width: 601px) {
+  #anglais {
+    grid-template-columns: repeat(3, 1fr); /* Ajustez en fonction de vos besoins */
+  }
+}
+
+
+

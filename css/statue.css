@@ -1,0 +1,363 @@
+#searchContainer {
+  display: none;
+}
+
+.header{
+  border: 2px solid red;
+  overflow: hidden;
+  position: relative;
+}
+iframe {
+  margin-top: 20px;
+  width: 100%;
+}
+  /* Ajoutez ici la valeur de la marge supérieure souhaitée */
+header{
+  border: 2px solid red;
+  height: 30px;
+  position: absolute;
+  z-index: 0;
+}
+
+#toggleSearchBtn {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  padding: 3px;
+  margin-left: 3px;
+  background-color: black;
+  color: white;
+}
+
+#toggleSearchBtn i {
+  font-size: 12px; /* Adjust font size as needed */
+}
+
+.search {
+  width: 100%; /* Adjust width as needed */
+  margin: auto;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 0 5px rgba(125, 129, 131, 0.7);
+}
+
+#searchInput {
+  padding: 5px; /* Adjust padding as needed */
+  border: 1px solid #ccc;
+  font-size: 12px;
+  background-color: #f1f1f1;
+  width: 100%;
+}
+
+#searchInput:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.7);
+}
+
+.barfiltre {
+  margin: 1px auto 10px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(167, 164, 164);
+}
+
+.btn {
+  padding: 5px;
+  background-color: #0075fc;
+  color: white;
+  gap: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 12px;
+}
+
+.btn.active {
+  background-color: #ff9100;
+}
+
+
+
+
+#statues {
+  position: static;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  z-index: 0;
+  min-height: 100%;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 2px;
+}
+
+#statues .post {
+  width: 100%;
+  height: max-content;
+  background-color: #fff;
+  border: 1px solid #0095f8;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 1px 1px 15px 1px;
+  padding: 2px;
+  padding-bottom: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#statues .post .img {
+  position: relative;
+  max-height: 70px;
+  overflow: hidden;
+}
+#statues .post .img img{
+  width: 100%;
+  overflow: hidden;
+}
+
+.post .img .categorie {
+  background-color: #0095f8;
+  color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 5px;
+  font-size: 12px;
+  display: none;
+}
+
+    /*titre du soustire*/
+  .post h1{
+    color: rgb(0, 81, 255);
+    margin: 4px;
+    margin-bottom: 2px;
+    font-size: 14px;
+    text-align: center;
+    white-space: nowrap; /* Prevents wrapping to the next line */
+    overflow: hidden; /* Hides any content that overflows the container */
+    text-overflow: ellipsis; /* Displays an ellipsis (...) to indicate text overflow */
+  }
+  .post p{
+    font-size: 12px;
+    margin: 4px;
+  }
+
+  .barall{
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    gap: 5px;
+    padding:1px 3px 1px 3px;
+  }
+  .barlike, .bardislike, .barcomment, .barshare {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    justify-content: space-around;
+  }
+  
+  .barlike .fa, .bardislike .fa, .barshare .fa {
+    border: 0px solid #3498db;
+    background-color: #fff;
+    color: #db3434;
+    padding: 1px 2px;
+    margin:2px 4px 2px 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .barlike span, .bardislike span, .barshare span, .barcomment span{
+    color: rgb(17, 63, 3);
+    font-size: 14px;
+  }
+  
+  .barlike .btnlike:hover, .bardislike button:hover {
+    background-color: #3498db;
+    color: #fff;
+  }
+
+  .btnprix {
+    background-color: #ccc;
+    display: flex;
+    align-items: center;
+    align-items: center;
+    border: 0px;
+    padding: 1px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+  
+  .btnprix button {
+    background-color: #3498db;
+    color: white;
+    width: 100%;
+    padding: 1px 5px 1px 5px;
+    border: 0px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+  
+  .btnprix p {
+    width: 100%;
+    background-color: #fffbfb;
+    color: rgb(245, 0, 0);
+    border: opx;
+    padding: 0px;
+    margin: 0;
+    border-bottom-right-radius: 8px;
+    
+  }
+  
+  .btnprix p .prix, .btnprix p i {
+    color: rgb(255, 0, 0);
+  }
+
+  .dedicace{
+    border: 1px solid blue;
+    border-radius: 10px;
+    padding: 10px;
+    margin: auto;
+    width: 80%;
+
+  }
+  .dedicace .input{
+    border: 1px solid blue;
+    margin: 10px auto;
+    width: fit-content;
+  }
+  .dedicace .input input{
+    padding: 7px;
+  }
+
+  .dedicace button{
+    width: 84%;
+  }
+  .dedicace .fermerdedicace{
+    height: 20px;
+    width: 20px;
+    float: left;
+    margin: auto;
+    padding: 10px;
+    display: flex;
+    color: red;
+    background: white;
+    border: #0075fc 2px solid;
+    border-radius: 5px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .statue-container{
+    width: 99%;
+    display: block;
+  }
+  
+  .statue-container #textes, .statue-container #livres{
+    width: 25% ;
+    border: 2px solid blue;
+    padding: 2px;
+    margin-bottom: 5px;
+  }
+
+  .statue-container #textes .post, .statue-container #livres .post{
+    margin-bottom: 5px;
+  }
+
+  .statue-container #textes .post p, .statue-container #livres .post p{
+    margin-bottom: 5px;
+    color: red;
+    display: none;
+  }
+
+
+  .statue-container #textes .barall, .statue-container #livres .barall{
+    display: none;
+  }
+
+  .statue-container #textes img, .statue-container #livres img{
+    width: 100%;
+  }
+
+  
+
+   /*Fin document a telecharger sour form de card*/
+   @media  screen and (max-width: 500px){
+    .statue-container{
+      max-width: 98.50%;
+      display: block;
+      padding: 0px;
+    }
+    #statues{
+      width: fit-content;
+      margin: auto;
+    }
+    #statues .post{
+      background: rgb(216, 13, 108);
+      margin-bottom: 10px;
+    }
+    #textes, #livres{
+      display: none;
+    }
+
+   }
+
+@media  screen and (max-width: 768px){
+  #statues {
+  display: block;
+  gap: 10px;
+  height: 100%;
+}
+
+#statues .post {
+  height: max-content;
+  background-color: #fff;
+  border: 1px solid #d359aa;
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 0px;
+  padding-bottom: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 2px 5px 12px 5px;
+}
+}
+
+
+
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  /* Styles spécifiques aux tablettes */
+  #statues {
+    display: block;
+    gap: 10px;
+    height: 100%;
+  }
+  
+  #statues .post {
+    height: max-content;
+    background-color: #fff;
+    border: 1px solid #0095f8;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 0px;
+    padding-bottom: 0px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 12px;
+  }
+}
+
+
+  
+
+
+

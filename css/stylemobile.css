@@ -1,0 +1,394 @@
+@media screen and (max-width: 768px){
+  aside{
+    display: none;
+  }
+  .pub{
+    border: 3px solid red;
+    overflow: hidden;
+  }
+}
+@media screen and (max-width: 460px){
+    #accueil{
+        display: block;
+    }
+    .home{
+        width: 100%;
+        box-shadow: none;
+        padding: 2px;
+    }
+    .accueil h1{
+        font-size: 26px;
+        text-align: center;
+    }
+    .accueil h2{
+        color: white;
+        text-align: center;
+        font-size: 1.1rem;
+      }
+      .accueil p{
+        color: white;
+        text-align: center;
+        font-size: 14px;
+        margin-top: 10px;
+      }
+
+      .accueil button{
+        background: white;
+        margin:10px auto 10px auto;
+        display: block;
+        border-radius: 6px;
+      }
+
+      .accueil .images{
+        width: 200px;
+        display: block;
+        margin: 10px auto;
+        overflow: hidden;
+      }
+      .accueil .images img{
+        width: 100%;
+      }
+
+      
+    .actualite{
+      display: block;
+      margin: 1px;
+      padding: 2px;
+    }
+    .articles{
+      position: relative;
+    }
+    .articles .post{
+      position: relative;
+      border: 1px solid blue;
+      -webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.75);
+      -moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.75);
+      box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.75);
+    }
+    .articles .post h1{
+      font-size: 18px;
+      line-height: normal;
+      margin: 2px;
+    }
+    .articles .post .img{
+      margin-top: 1px;
+      margin-bottom: 2px;
+    }
+
+    .articles .post .video-container{
+      width: 100%;
+    }
+    .articles .post .video-container iframe{
+      width: 100%;
+    }
+    .articles .post 
+    .articles .post p{
+      margin: 2px 5px;
+    }
+    .articles .post .more{
+      background: red;
+      color: white;
+      border: gray 2px solid;
+      border-radius: 10px;
+
+    }
+    #Articles-update{
+      min-width: 100%;
+      max-width: 100%;
+      height: max-content;
+      display: flex;
+      margin-top: 10px;
+      overflow-y: hidden;
+      overflow-x: auto;
+    }
+    .articles-update .post{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 270px;
+      padding: 2px;
+      border: 2px solid blue;
+      -webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.75);
+      -moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.75);
+      box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.75);
+    }
+    .articles-update .post .img{
+      max-width: 70px;
+      min-width: 70px;
+      min-height: 70px;
+      max-height: 70px;
+      border: none;
+      margin-left: 2px;
+      margin-right: 5px;
+    }
+
+    .articles-update .post .img img{
+      min-height: 100%;
+      max-height: 100%;
+      min-width: 100%;
+      max-width: 100%;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    #Articles-update .post h1 {
+      font-size: 14px;
+      line-height: 1;
+      max-height: calc(1.4 * 1); /* Calculer la hauteur pour trois lignes */
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3; /* Nombre de lignes à afficher */
+      -webkit-box-orient: vertical;
+    }
+
+    #Articles-update .post p {
+      font-size: 13px;
+      line-height: 1;
+      max-height: calc(1.4 * 3); /* Calculer la hauteur pour trois lignes */
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3; /* Nombre de lignes à afficher */
+      -webkit-box-orient: vertical;
+    }
+    
+}
+/*menu de mon site sur mobile*/
+@media screen and (max-width: 768px){
+  menu, #menu{
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%);
+    width: 100%;
+    height: 55px;
+    background: var(--blue);
+    margin: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 109;
+}
+
+menu .fa-close{
+    display: none;
+}
+
+
+menu .topbtn{
+    border: var(--orange) 1px solid;
+    width: max-content;
+    background: var(--blanc);
+    height: 100%;
+    width: max-content;
+}
+
+menu .btnmenu{
+    position: absolute;
+    left: 0;
+    font-size: 36px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--blue);
+}
+
+menu .rc{
+    position: absolute;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    padding: 1px 5px;
+}
+menu .rc div:nth-child(2){
+    border: 1px solid var(--orange);
+    padding: 5px;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    border-radius: 50%;
+    margin: 1px 5px;
+}
+
+
+nav{
+    display: none;
+    position: relative;
+    background-color: var(--noir);
+    position: absolute;
+    top: 56px;
+    left: 0;
+    width: 300px;
+    min-height: 100vh;
+    color: var(--blanc);
+    z-index: 1;
+}
+nav p{
+    margin-left: 10px ;
+    background-color: var(--blanc);
+    padding: 5px;
+    width: 50%;
+}
+nav i{
+    margin-right: 10px;
+}
+nav a{
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+.sideItem{
+  position: relative;
+  width: 100%;
+  max-height: 50px;
+  background: rgba(255, 255, 255, 0);
+  
+  display: block;
+}
+
+.sideItem p{
+  border: 1px solid rgb(75, 72, 72);
+  margin: 3px 10px;
+  padding: 2px 10px;
+  cursor: pointer;
+}
+menu .art-myuser{
+    background-color: var(--gray);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+menu .art-myuser div:nth-child(1){
+    border: 2px solid var(--noir);
+    width: 100px;
+    height: 100px;
+    display: block;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+menu .art-myuser p{
+    margin: 1px;
+    font-size: 14px;
+    color: var(--noir);
+    width: 100%;
+    background: none;
+    margin-top: 2px;
+}
+
+
+.logos{
+  position: absolute;
+  left: 20%;
+  top: 5;
+  transform: translate(50%);
+  background-color: rgb(255, 255, 255);
+  width: max-content;
+  height: 50px;
+  width: 50px;
+  min-width: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+
+
+/*Fin menu de mon site web*/
+}
+ 
+
+
+@media screen and (max-width: 768px){
+ /* Header */
+header {
+  position: relative;
+    background-color: black;
+    color: #fff;
+    padding: 0px;
+    padding-bottom: 0px ;
+    margin: 0px;
+    margin-bottom: 20px;
+    text-align: center;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+header .section{
+  background-color: #000000a4;
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  display: flex;
+    align-items: center;
+    justify-content: center;
+}
+header .section div{
+  display: block;
+  background-color: black;
+  padding: 2px;
+  
+}
+
+header h2 {
+    margin: 0;
+    font-size: 20px;
+    color: var(--blue)
+}
+header p {
+  margin: 0;
+  font-size: 14px;
+}
+
+header .active{
+  display: block;
+}
+header .contenue{
+  display: none;
+  width: 90%;
+}
+header .contenue div p{
+  margin: 10px;
+}
+  .card{
+    width: 100%;
+    overflow-x: scroll;
+    padding: 2px;
+  }
+  .card h2{
+    font-size: 1.5rem;
+    margin: 3px;
+  }
+  .card h3{
+    font-size: 1.1em;
+    margin: 3px;
+  }
+
+  .card p{
+    font-size: 0.8em;
+    margin: 3px;
+  }
+  .card section{
+    min-width: 290px;
+    padding: 2px;
+    margin: 3px;
+    border: 1px solid black;
+  }
+
+  
+}
