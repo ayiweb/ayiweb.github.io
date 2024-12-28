@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Panier</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Mon Panier</h1>
+    </header>
+    <main id="cart-container"></main>
+    <script>
+        
+function getCart() {
+    const cart = localStorage.getItem('cart');
+    return cart ? JSON.parse(cart) : [];
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    const cartContainer = document.getElementById('cart-container');
+    const cart = getCart();
+
+    if (cart.length === 0) {
+        cartContainer.innerHTML = '<p>Votre panier est vide.</p>';
+    } else {
+        cart.forEach(item => {
+            const cartItem = document.createElement('div');
+            cartItem.classList.add('cart-item');
+            cartItem.innerHTML = `
+                <img src="${item.Image}" alt="${item.title}" style="width: 100px;">
+                <h3>${item.title}</h3>
+            `;
+            cartContainer.appendChild(cartItem);
+        });
+    }
+});
+    </script>
+</body>
+</html>

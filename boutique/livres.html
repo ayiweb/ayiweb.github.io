@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+       <!-- Meta Tags for SEO -->
+       <meta name="description" content="Plateforme de cours et formations en anglais et informatique, adaptée à tous niveaux. Maîtrisez les compétences clés pour un avenir professionnel réussi.">
+       <meta name="keywords" content="Anglais, Informatique, cours, Apprendre l'informatique, creation website">
+       <meta name="author" content="Ruban Joseph">
+       <meta name="robots" content="index, follow">
+   
+       <!-- Open Graph Tags for social media optimization -->
+       <meta property="og:title" content="Cours et formations en anglais et informatique">
+       <meta property="og:description" content="Plateforme de cours et formations en anglais et informatique, adaptée à tous niveaux. Maîtrisez les compétences clés pour un avenir professionnel réussi.">
+       <meta property="og:image" content="/images/p formation.png">
+       <meta property="og:url" content="https://unitechconseil.online/p/cours.html">
+       <meta property="og:type" content="website">
+       
+       <!-- Twitter Card Tags for Twitter Optimization -->
+       <meta name="twitter:card" content="summary_large_image">
+       <meta name="twitter:title" content="Cours et formations en anglais et informatique">
+       <meta name="twitter:description" content="Plateforme de cours et formations en anglais et informatique, adaptée à tous niveaux. Maîtrisez les compétences clés pour un avenir professionnel réussi.">
+       <meta name="twitter:image" content="/images/p formation.png">
+   
+   
+    <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-M2XBSDLFQZ"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-M2XBSDLFQZ');
+        </script>
+        <link rel="stylesheet" href="/css/css/all.css">
+        <link rel="stylesheet" href="/css/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script async src="https://www.googletagservices.com/tag/js/gpt.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7979799450178267"
+     crossorigin="anonymous"></script>
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-zruApR6S1gbL0OeSqjrFYseztvotdAyMBwK9aaVg6AeY3I4Wl9PrtQ/kOcvtO1PnwYFqxu3MNSXfs3lEpxdumQ==" crossorigin="anonymous" />
+     <link rel="stylesheet" href="/css/style.css">
+     <link rel="stylesheet" href="boutique.css">
+
+</head>                                                                                                                                     
+<body>
+    <div class="container">
+           <!--Configurztion de mon site web-->
+           <section>
+            <div id="splash-screen"></div>
+            <menu id="menu"></menu>
+            <div id="customDialog" class="alert"></div>
+            <div class="formulaire"></div>
+            <footer class="mobile-footer"></footer>
+            <div class="placement">
+                <div class="usersdetails" id="userDetails"></div>
+            </div>
+        </section>
+         <!--Configurztion de mon site web-->
+
+       <div class="content">
+        <main class="livres">
+            <div class="barsearch">
+                <input type="text" id="search-bar" placeholder="Rechercher un livre par titre...">
+                <select id="type-select">
+                    <option value="">Sélectionner un type</option>
+                </select>
+            </div>
+            
+            
+            <div id="books-container"></div>
+        </main>
+        <main class="docsDetails">
+            <button class="close">close</button>
+            <div id="details-items"></div>
+            <div class="progress-bar" style="display: none;">
+                <p>Loading... Please wait</p>
+            </div>
+        </main>
+        <aside>
+        </aside>        
+       </div>
+
+
+    </div>
+    <script src="https://apis.google.com/js/api.js" gapi_processed="true"></script>
+     <!-- The core Firebase JS SDK is always required and must be listed first -->
+     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-database.js"></script>
+    <!-- Scripts JavaScript -->
+    <script src="/js/asset.js" defer></script>
+    <script src="/js/script.js" defer></script>
+    <script src="/js/button.js" defer></script>
+    
+    <script src="boutique.js" defer></script>
+    <script>
+        const apiKey = '48185c4fc15b7a692ce7294ed55ad1ee';
+const apiUrl = 'https://api3.adsterratools.com/publisher'; // Remplacez avec le bon endpoint si nécessaire
+
+        fetch(apiUrl, {
+        method: 'GET', // Méthode GET ou POST selon la documentation
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${apiKey}` // Passer la clé API dans les en-têtes
+        }
+        })
+        .then(response => response.json())
+        .then(data => {
+        console.log('Réponse de l\'API:', data); // Afficher la réponse de l'API
+        })
+        .catch(error => {
+        console.error('Erreur lors de la requête API:', error);
+        });
+
+
+    </script>
+</body>
+</html>

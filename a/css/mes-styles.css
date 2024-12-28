@@ -1,0 +1,475 @@
+﻿/*Le style qui prime - Contraint les dimensionnements internes à la taille de la boîte, soit de la fenêtre*/
+html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}
+a:link { color:#fcfcfc; text-decoration:none; }
+a:visited { color:#fcfcfc; text-decoration:none; }
+a:hover { color:#fcfcfc; text-decoration:none; }
+a:active { color:#fcfcfc; text-decoration:none; }
+html,body
+{
+	font-family:Calibri,Verdana,sans-serif;
+	font-size:15px;
+	line-height:1.5;
+	background-color:#fcfcfc;
+	padding:0px;
+	margin:0px;
+}
+html{overflow-x:hidden}
+
+/* Changer le curseur en main lorsque survol des liens */
+a {
+    cursor: pointer;
+    text-decoration: underline; /* Assure que les liens sont soulignés */
+    color: red; /* Couleur des liens pour être en rouge par défaut */
+}
+
+/* Enlève la décoration par défaut pour éviter un double soulignement */
+a:visited {
+    color: red;
+}
+.selected {
+	background-color: #d3d3d3;
+	display: inline;
+}
+/* Optionnel : Style de l'infobulle */
+a[title] {
+    border-bottom: 1px dotted #000;
+}
+
+.bodyediteur{
+	display: flex;
+	gap: 10px;
+}
+.viewtexte{
+	display: none;
+}
+.code{
+	background-color: black;
+	color: white;
+	font-size: 14px;
+}
+
+
+select,input
+{
+	font-size:12px;
+	width:200px;
+	height:30px;
+	color:#a13638;
+}
+
+#contenu
+{
+	width:auto;
+	height:100%;
+	/*background: linear-gradient(#edeeee, #fff);*/
+	border:#b1b1b1 2px solid;
+	border-radius:3px;
+	margin-bottom:50px;
+	/*Deux dernières coordonnées pour inverser l'effet de l'ombre portée*/
+	box-shadow: 0px 0px 3px 3px #666;	
+}
+
+#conteneur
+{
+	width:70%;
+	height: 100%;
+	text-align:left;
+	margin: 6px auto;
+}
+
+.line-numbers {
+    background-color: #2d2d2d; /* Couleur de fond de la colonne des numéros */
+    color: #858585; /* Couleur des numéros de ligne */
+    padding: 10px;
+    user-select: none;
+    text-align: right;
+    padding-right: 10px;
+}
+
+.line-numbers div {
+    line-height: 20px; /* Hauteur de ligne pour correspondre au contenu */
+}
+
+#btn
+{
+	position:absolute;
+	left:3%;
+	top:2px;
+}
+#auCentre
+{
+	overflow-x: hidden;
+	width:100%;
+	height:100%;
+	margin:auto;
+	margin-top:1px;
+	margin-bottom: 5px;
+	padding:1px;
+	text-align:justify;
+	font-size:20px;
+}
+.myInput{
+	display: none;
+}
+.form{
+	display: none;
+	background: white;
+	padding: 5px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+	z-index: 10;
+	box-shadow: 0px 0px 3px 3px #666;
+}
+.form .input{
+	border: 1px solid blue;
+}
+.form input{
+	padding: 8px;
+}
+.form .button button{
+	width: 100%;
+	padding: 8px;
+	margin: 10px auto;
+}
+.form .button{
+	display: flex;
+	gap: 6px;
+}
+
+
+.toolbar {
+    margin-top: -28px;
+	border: 1px solid lime;
+}
+
+button {
+    margin: 0 5px;
+    padding: 10px;
+    font-size: 18px;
+    background: #f0f0f0;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #e0e0e0;
+}
+
+button:focus {
+    outline: none;
+}
+
+.colorPicker {
+    display: flex;
+    align-items: center;
+    margin: 0 5px;
+}
+.colorPicker button{
+	width: 20px;
+	height: 20px;
+}
+.color-swatch {
+    width: 24px;
+    height: 24px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    margin: 0 2px;
+    cursor: pointer;
+}
+
+.color-swatch:hover {
+    border: 2px solid #000;
+}
+
+#colorInput {
+    display: none; /* Hide the color input by default */
+}
+
+#customColorButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#fontFamily {
+	width: 50px;
+    margin: 0 5px;
+    padding: 5px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+	background: none;
+
+}
+
+.editor, .code {
+    width: 100%;
+    height: 80vh;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow-y: auto;
+	line-height: normal;
+	text-align: left;
+}
+
+.editor img {
+    max-width: 100%;
+    height: auto;
+}
+
+.color-button {
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	margin: 5px;
+	border: 1px solid #000;
+	cursor: pointer;
+}
+#selectedColor {
+	width: 100px;
+	height: 100px;
+	border: 1px solid #000;
+	margin-top: 20px;
+}
+
+.btnMenu
+{
+	 width:220px;
+	 height:40px;
+	 margin-left:12px;
+	 margin-right:12px;
+	 font-weight:bold;
+     color: #ccc;
+	 font-weight:bold;
+     background: #444;
+     background: linear-gradient( #555, #2C2C2C);
+     box-shadow: 0 0 10px rgba( 0, 0, 0, 0.8),
+                 0 -1px 0 rgba( 255, 255, 255, 0.6);	
+	
+	box-shadow: 2px 2px 0px #aaa;
+	font-size:14px;
+	text-align:center;	
+	padding-left:0px;	
+}
+
+.btnMenu:hover
+{
+	cursor:pointer;
+	box-shadow: 6px 6px 0px #aaa;	
+}
+
+
+
+.selection{
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 10px;
+	margin-top: 10px auto;
+	padding: 0px;
+}
+.selection select{
+	width: 100%;
+	font-size: 12px;
+}
+
+.input{
+	width: 100%;
+}
+.input div{
+	margin-top: 10px;
+}
+
+.input input{
+	width: 100%;
+	font-size: 12px;
+}
+.input input:focus{
+	outline: none;
+}
+.input div:nth-child(1){
+	display: flex;
+	min-width: 100%;
+	gap: 10px;
+}
+.input div:nth-child(1) input:nth-child(1){
+	min-width: 70%;
+}
+.input div:nth-child(1):nth-child(2){
+	max-width: 60px;
+}
+
+.allbtn{
+	position: fixed;
+	bottom: 0;
+	left: 50%;
+	transform: translate(-50%);
+	background-color: blue;
+	width: 50%;
+	padding: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+}
+.allbtn button{
+	width: 100%;
+	padding: 7px;
+}
+
+.btnclose{
+	display: none;
+	max-width: max-content;
+	background-color: red;
+	border: none;
+}
+.button{
+	display: flex;
+	overflow-x: auto;
+	width: 100%;
+	border: 1px solid rgb(0, 0, 0);
+	padding: 5px;
+}
+
+.toolbar{
+	display: flex;
+	align-items: center;
+	overflow-x: auto;
+	width: 100%;
+	height: 40px;
+	border: 1px solid rgb(0, 0, 0);
+	padding: 5px;
+}
+
+.toolbar button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 20px;
+	background-color: #ffffff; /* Couleur de fond */
+	border: none; /* Supprimer les bordures */
+	color: black; /* Couleur du texte */
+	padding: 3px; /* Espacement intérieur */
+	text-align: center; /* Alignement du texte */
+	text-decoration: none; /* Supprimer les soulignements */
+	display: inline-flex; /* Flexbox pour centrer l'icône et le texte */
+	align-items: center; /* Centrer verticalement */
+	font-size: 12px; /* Taille du texte */
+	cursor: pointer; /* Curseur pointeur */
+	border-radius: 5px; /* Coins arrondis */
+	transition: background-color 0.3s ease; /* Transition sur la couleur de fond */
+}
+.toolbar select{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 20px;
+	background-color: #ffffff; /* Couleur de fond */
+	border: none; /* Supprimer les bordures */
+	color: black; /* Couleur du texte */
+	padding: 3px; /* Espacement intérieur */
+	text-align: center; /* Alignement du texte */
+	text-decoration: none; /* Supprimer les soulignements */
+	display: inline-flex; /* Flexbox pour centrer l'icône et le texte */
+	align-items: center; /* Centrer verticalement */
+	font-size: 12px; /* Taille du texte */
+	cursor: pointer; /* Curseur pointeur */
+	border-radius: 5px; /* Coins arrondis */
+	transition: background-color 0.3s ease; /* Transition sur la couleur de fond */
+}
+
+.toolbar #colorPicker{
+	background-color: red;
+}
+.toolbar #colorPicker option{
+	background-color: rgb(255, 255, 255);
+}
+
+
+
+.button button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 20px;
+	background-color: #ffffff; /* Couleur de fond */
+	border: none; /* Supprimer les bordures */
+	color: black; /* Couleur du texte */
+	padding: 3px; /* Espacement intérieur */
+	text-align: center; /* Alignement du texte */
+	text-decoration: none; /* Supprimer les soulignements */
+	display: inline-flex; /* Flexbox pour centrer l'icône et le texte */
+	align-items: center; /* Centrer verticalement */
+	font-size: 12px; /* Taille du texte */
+	cursor: pointer; /* Curseur pointeur */
+	border-radius: 5px; /* Coins arrondis */
+	transition: background-color 0.3s ease; /* Transition sur la couleur de fond */
+}
+
+
+button i {
+	text-align: center;
+	margin-right: 2px; /* Espacement entre l'icône et le texte */
+}
+
+button:hover {
+	background-color: #45a049; /* Couleur de fond au survol */
+}
+
+button:active {
+	background-color: #3e8e41; /* Couleur de fond lors du clic */
+}
+
+button:focus {
+	outline: none; /* Supprimer le contour lors du focus */
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 1px;
+    height: 5px
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background:blue; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+  .insert{
+	display: flex;
+	align-items: center;
+	gap: 10px;
+  }
+  .insert img{
+	width: 30px;
+	height: 30px;
+	border-radius: 15px;
+  }
+
+
+  @media screen and (max-width: 768px){
+	#conteneur, .allbtn
+		{
+			width:98%;
+		}
+		.code, .viewtexte{
+			display: none;
+			color: #000;
+			font-size: 12px;
+		}
+  }
+
+  
