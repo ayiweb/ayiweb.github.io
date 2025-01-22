@@ -1,0 +1,169 @@
+/* Style général */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+.utilisateur {
+  padding: 20px;
+  background-color: #007BFF;
+  color: white;
+  text-align: center;
+}
+
+.utilisateur input, .utilisateur button {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+/* Style du chat */
+.chat {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 20px auto;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;  /* Garantit que le chat occupe toute la largeur disponible sur petits écrans */
+}
+
+/* Style des messages */
+.messages {
+  padding: 10px;
+  height: 300px;
+  overflow-y: auto;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.messages div {
+  padding: 10px;
+  border-radius: 20px;
+  max-width: 80%; /* Limite la largeur des bulles de message */
+  word-wrap: break-word;
+  display: inline-block;
+}
+
+.messages .my-message {
+  background-color: #007BFF;
+  color: white;
+  align-self: flex-end;
+}
+
+.messages .other-message {
+  background-color: #f0f0f0;
+  color: #333;
+  align-self: flex-start;
+}
+
+/* Style du container d'entrée */
+.input-container {
+  display: flex;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
+.input-container input {
+  flex-grow: 1;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.input-container button {
+  padding: 10px 15px;
+  background-color: #007BFF;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.input-container button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive styles */
+
+/* Sur les écrans de plus de 600px, on définit une largeur plus grande pour le chat */
+@media (min-width: 600px) {
+  .chat {
+    max-width: 500px; /* Augmenter la largeur du chat */
+  }
+}
+
+/* Sur les écrans de plus de 768px (tablettes en paysage, ordinateurs), ajuster la taille des éléments */
+@media (min-width: 768px) {
+  .utilisateur input, .utilisateur button {
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  .input-container input {
+    font-size: 16px;
+  }
+
+  .input-container button {
+    font-size: 16px;
+  }
+
+  .chat {
+    max-width: 600px; /* Largeur plus large pour les écrans plus grands */
+  }
+
+  .messages {
+    height: 350px; /* Augmenter la hauteur des messages */
+  }
+}
+
+/* Sur les écrans de plus de 1024px (ordinateurs de bureau), ajuster la mise en page si nécessaire */
+@media (min-width: 1024px) {
+  .chat {
+    max-width: 700px; /* Largeur encore plus grande pour les grands écrans */
+  }
+
+  .messages {
+    height: 400px; /* Ajuster la hauteur des messages */
+  }
+}
+
+/* Style des messages */
+.messages {
+  padding: 10px;
+  height: 300px;
+  overflow-y: auto;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.messages div {
+  padding: 10px;
+  border-radius: 20px;
+  max-width: 80%; /* Limiter la largeur des bulles */
+  word-wrap: break-word;
+  display: inline-block;
+}
+
+/* Message de l'utilisateur (bulle bleue) */
+.messages .my-message {
+  background-color: #007BFF; /* Couleur bleue pour l'utilisateur */
+  color: white;
+  align-self: flex-end;  /* Aligner le message à droite */
+  border-radius: 15px 15px 0 15px;  /* Coin arrondi à gauche */
+}
+
+/* Message d'un autre utilisateur (bulle grise) */
+.messages .other-message {
+  background-color: #f0f0f0; /* Couleur gris clair pour les autres utilisateurs */
+  color: #333;
+  align-self: flex-start; /* Aligner le message à gauche */
+  border-radius: 15px 15px 15px 0; /* Coin arrondi à droite */
+}
