@@ -1,39 +1,50 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Mon Chat</title>
-   <link rel="stylesheet" href="chat.css">
-
-   <!-- Firebase SDK (version 8.6.5) -->
-   <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
-   <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
-   <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-database.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mon Chat</title>
+  <link rel="stylesheet" href="chat.css">
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-database.js"></script>
 </head>
 <body>
   <div class="utilisateur">
     <input type="text" id="user" placeholder="Entrez votre nom">
+    <input type="password" id="password" placeholder="Entrez votre mot de passe">
     <button id="connectBtn">Connecter</button>
+    <button id="signupBtn">S'inscrire</button>
     <button id="disconnectBtn" style="display:none;">Déconnecter</button>
   </div>
 
   <div class="chat" style="display:none;">
     <div class="messages"></div>
+    <button class="open-sidebar-btn">Utilisateurs</button>
+    <div class="users-list sidebar">
+      <h3>Utilisateurs connectés (<span id="usersCount">0</span>)</h3>
+      <ul id="usersList"></ul>
+    </div>
     <div class="input-container">
       <input type="text" id="message" placeholder="Envoyez un message">
       <button id="sendBtn">Envoyer</button>
+      <button id="emojiBtn">😊</button>
+      <div id="emojiContainer" style="display:none;">
+        <span class="emoji" data-emoji="😊">😊</span>
+        <span class="emoji" data-emoji="😂">😂</span>
+        <span class="emoji" data-emoji="❤️">❤️</span>
+        <span class="emoji" data-emoji="😍">😍</span>
+        <span class="emoji" data-emoji="😎">😎</span>
+        <span class="emoji" data-emoji="😢">😢</span>
+      </div>
     </div>
   </div>
 
-  <!-- Message de confirmation -->
-  <div id="confirmationMessage" style="display:none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background-color: #25D366; color: white; padding: 10px; border-radius: 5px; font-size: 14px;">
-    Message envoyé !
-  </div>
-
-  <script src="script.js"></script>
+  <div id="confirmationMessage" style="display:none;">Message envoyé !</div>
+  <script src="chat.js"></script>
   <script>
-    // 1. Configuration Firebase
+  
+    // Initialisation Firebase
     const firebaseConfig = {
       apiKey: "AIzaSyAQeHWr_vUiQmVVgJJ_cOF9qrCCLd7IJNc",
       authDomain: "ayiweb.firebaseapp.com",
@@ -43,178 +54,258 @@
       messagingSenderId: "115054504556",
       appId: "1:115054504556:web:ccd713ba01dd8f02830649"
     };
-
-    // 2. Initialiser Firebase
     const app = firebase.initializeApp(firebaseConfig);
     const database = firebase.database(app);
 
+    let replyingToMessageId = null;
+
+    // Sélection des éléments DOM
     const connectBtn = document.getElementById('connectBtn');
+    const signupBtn = document.getElementById('signupBtn');
     const disconnectBtn = document.getElementById('disconnectBtn');
     const userInput = document.getElementById('user');
+    const passwordInput = document.getElementById('password');
     const messageInput = document.getElementById('message');
     const messagesDiv = document.querySelector('.messages');
     const sendBtn = document.getElementById('sendBtn');
     const chatDiv = document.querySelector('.chat');
+    const usersListDiv = document.getElementById('usersList');
+    const usersCountSpan = document.getElementById('usersCount');
+    const emojiBtn = document.getElementById('emojiBtn');
+    const emojiContainer = document.getElementById('emojiContainer');
 
-    // Vérification si un utilisateur est déjà connecté
-    if (localStorage.getItem('username')) {
-      showChat(localStorage.getItem('username'));
-      loadMessagesFromFirebase(); // Charger les messages depuis Firebase
-    }
+    // Vérifier si l'utilisateur est déjà connecté après un rafraîchissement
+    window.onload = () => {
+      const username = localStorage.getItem('username');
+      if (username) {
+        showChat(username);
+      }
+    };
 
-    // Fonction pour afficher le chat et masquer la zone de connexion
+    // Fonction d'affichage du chat
     function showChat(username) {
       document.querySelector('.utilisateur').style.display = 'none';
       chatDiv.style.display = 'flex';
       document.querySelector('.messages').innerHTML += `<div><strong>${username}</strong> a rejoint le chat.</div>`;
       localStorage.setItem('username', username);
       disconnectBtn.style.display = 'inline-block';
+      loadMessagesFromFirebase();
+      addUserToFirebase(username);
     }
 
-    // Fonction pour masquer le chat et afficher la zone de connexion
+    // Fonction pour masquer le chat
     function hideChat() {
       document.querySelector('.utilisateur').style.display = 'block';
       chatDiv.style.display = 'none';
       localStorage.removeItem('username');
       disconnectBtn.style.display = 'none';
+      removeUserFromFirebase(localStorage.getItem('username'));
     }
 
-    // Event listener pour le bouton de connexion
+    // Connexion avec mot de passe
     connectBtn.addEventListener('click', () => {
       const username = userInput.value.trim();
-      if (username) {
-        showChat(username);
-        loadMessagesFromFirebase(); // Charger les messages depuis Firebase
+      const password = passwordInput.value.trim();
+      if (username && password) {
+        const usersRef = database.ref('users');
+        usersRef.child(username).once('value', (snapshot) => {
+          if (snapshot.exists() && snapshot.val().password === password) {
+            showChat(username);
+          } else {
+            alert('Nom d\'utilisateur ou mot de passe incorrect.');
+          }
+        });
       } else {
-        alert('Veuillez entrer un nom d\'utilisateur.');
+        alert('Veuillez entrer un nom d\'utilisateur et un mot de passe.');
       }
     });
 
-    // Event listener pour le bouton de déconnexion
+    // Inscription
+    signupBtn.addEventListener('click', () => {
+      const username = userInput.value.trim();
+      const password = passwordInput.value.trim();
+      if (username && password) {
+        const usersRef = database.ref('users');
+        usersRef.child(username).once('value', (snapshot) => {
+          if (snapshot.exists()) {
+            alert('Cet utilisateur existe déjà.');
+          } else {
+            usersRef.child(username).set({ password: password });
+            alert('Inscription réussie ! Vous pouvez maintenant vous connecter.');
+          }
+        });
+      } else {
+        alert('Veuillez entrer un nom d\'utilisateur et un mot de passe.');
+      }
+    });
+
+    // Déconnexion
     disconnectBtn.addEventListener('click', () => {
       hideChat();
     });
 
-    // Envoi du message
+    // Lorsque l'utilisateur clique sur un message, activer le mode réponse
+    messagesDiv.addEventListener('click', (event) => {
+      if (event.target.classList.contains('message')) {
+        replyingToMessageId = event.target.getAttribute('data-message-id');
+        messageInput.placeholder = 'Répondre au message...';
+      } else if (event.target.classList.contains('delete-btn')) {
+        // Suppression du message
+        const messageId = event.target.parentElement.getAttribute('data-message-id');
+        deleteMessage(messageId);
+      }
+    });
+
+    // Fonction pour envoyer un message
     sendBtn.addEventListener('click', () => {
       const username = localStorage.getItem('username');
       const message = messageInput.value.trim();
-      
       if (message) {
-        // Créer un ID unique pour chaque message
         const messageId = Date.now() + Math.random().toString(36).substring(2, 15);
+        saveMessageToFirebase(username, message, messageId, replyingToMessageId);
 
-        // Sauvegarder le message dans Firebase avec un ID unique
-        saveMessageToFirebase(username, message, messageId);
-
-        // Créer un nouvel élément de message
         const messageElement = document.createElement('div');
         messageElement.textContent = `${username}: ${message}`;
+        messageElement.classList.add('my-message');
+        messageElement.setAttribute('data-message-id', messageId);
 
-        // Ajouter une classe selon l'expéditeur
+        // Ajouter un bouton de suppression uniquement pour les messages envoyés par l'utilisateur connecté
         if (username === localStorage.getItem('username')) {
-          messageElement.classList.add('my-message');  // Message de l'utilisateur
-        } else {
-          messageElement.classList.add('other-message');  // Message d'un autre utilisateur
+          const deleteBtn = document.createElement('button');
+          deleteBtn.textContent = 'Supprimer';
+          deleteBtn.classList.add('delete-btn');
+          messageElement.appendChild(deleteBtn);
         }
 
-        // Ajouter un bouton de suppression pour le message
-        const deleteBtn = document.createElement('button');
-        deleteBtn.textContent = 'Supprimer';
-        deleteBtn.classList.add('delete-btn');
-        messageElement.appendChild(deleteBtn);
+        // Afficher la réponse avec le nom de l'utilisateur auquel on répond
+        if (replyingToMessageId) {
+          const replyElement = document.createElement('div');
+          replyElement.classList.add('reply');
+          replyElement.textContent = `Répondre à: ${replyingToMessageId}`; // Ajout de l'ID ici
+          messageElement.appendChild(replyElement);
+        }
 
-        // Ajouter un event listener au bouton de suppression
-        deleteBtn.addEventListener('click', () => {
-          deleteMessageFromFirebase(messageElement, messageId);  // Utilisation de l'ID unique pour Firebase
-        });
-
-        // Ajouter le message à l'interface
         messagesDiv.appendChild(messageElement);
-        messageInput.value = '';  // Vider le champ de saisie
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;  // Dérouler jusqu'au bas du chat
 
-        // Afficher le message de confirmation
+        messageInput.value = '';
+        messageInput.placeholder = 'Envoyez un message';
+        replyingToMessageId = null;
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
         showConfirmationMessage();
       }
     });
 
-    // Fonction pour sauvegarder le message dans Firebase
-    function saveMessageToFirebase(username, message, messageId) {
+    // Fonction pour sauvegarder un message dans Firebase
+    function saveMessageToFirebase(username, message, messageId, replyingToMessageId = null) {
       const messagesRef = database.ref('messages');
       messagesRef.push({
         username: username,
         message: message,
-        messageId: messageId,  // Ajouter l'ID unique
+        messageId: messageId,
+        replyingToMessageId: replyingToMessageId,
         timestamp: Date.now()
       });
     }
 
-    // Fonction pour récupérer les messages depuis Firebase
+    // Fonction pour charger les messages depuis Firebase (une seule fois)
     function loadMessagesFromFirebase() {
       const messagesRef = database.ref('messages');
-      messagesRef.on('child_added', (snapshot) => {
-        const data = snapshot.val();
-        const messageElement = document.createElement('div');
-        messageElement.textContent = `${data.username}: ${data.message}`;
+      messagesRef.once('value', (snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+          const data = childSnapshot.val();
+          const messageElement = document.createElement('div');
+          messageElement.classList.add('message');
+          messageElement.setAttribute('data-message-id', data.messageId);
+          messageElement.textContent = `${data.username}: ${data.message}`;
 
-        // Ajouter la couleur selon l'expéditeur
-        if (data.username === localStorage.getItem('username')) {
-          messageElement.classList.add('my-message');
-        } else {
-          messageElement.classList.add('other-message');
-        }
+          // Ajouter un bouton de suppression uniquement si l'utilisateur est celui qui a envoyé le message
+          const username = localStorage.getItem('username');
+          if (data.username === username) {
+            const deleteBtn = document.createElement('button');
+            deleteBtn.textContent = 'Supprimer';
+            deleteBtn.classList.add('delete-btn');
+            messageElement.appendChild(deleteBtn);
+          }
 
-        // Ajouter un bouton de suppression pour le message
-        const deleteBtn = document.createElement('button');
-        deleteBtn.textContent = 'Supprimer';
-        deleteBtn.classList.add('delete-btn');
-        messageElement.appendChild(deleteBtn);
+          // Si le message est une réponse, afficher le nom de l'utilisateur auquel on répond
+          if (data.replyingToMessageId) {
+            const replyElement = document.createElement('div');
+            replyElement.classList.add('reply');
 
-        // Ajouter un event listener au bouton de suppression
-        deleteBtn.addEventListener('click', () => {
-          deleteMessageFromFirebase(messageElement, data.messageId);  // Utilisation de l'ID unique pour Firebase
+            // Chercher le message parent pour récupérer le nom de l'utilisateur auquel on répond
+            messagesRef.orderByChild('messageId').equalTo(data.replyingToMessageId).once('child_added', (parentSnapshot) => {
+              const parentData = parentSnapshot.val();
+              if (parentData) {
+                replyElement.textContent = `Réponse à: ${parentData.username}`;
+                messageElement.appendChild(replyElement);
+              }
+            });
+          }
+
+          messagesDiv.appendChild(messageElement);
         });
-
-        messagesDiv.appendChild(messageElement);
         messagesDiv.scrollTop = messagesDiv.scrollHeight;
       });
     }
 
-    // Fonction pour supprimer un message de Firebase
-    function deleteMessageFromFirebase(messageElement, messageId) {
+    // Fonction pour supprimer un message
+    function deleteMessage(messageId) {
       const messagesRef = database.ref('messages');
-      messagesRef.once('value', (snapshot) => {
-        snapshot.forEach((childSnapshot) => {
-          if (childSnapshot.val().messageId === messageId) {  // Utiliser l'ID unique
-            childSnapshot.ref.remove();  // Supprimer du Firebase
-          }
-        });
+      messagesRef.orderByChild('messageId').equalTo(messageId).once('child_added', (snapshot) => {
+        snapshot.ref.remove();
+        messagesDiv.innerHTML = '';  // Clear messages and reload
+        loadMessagesFromFirebase();  // Reload messages
       });
-      messageElement.remove();  // Supprimer du DOM
     }
 
-    // Fonction pour afficher le message de confirmation
+    // Fonction pour afficher un message de confirmation
     function showConfirmationMessage() {
       const confirmationMessage = document.getElementById('confirmationMessage');
       confirmationMessage.style.display = 'block';
-
-      // Masquer le message après 2 secondes
       setTimeout(() => {
         confirmationMessage.style.display = 'none';
       }, 2000);
     }
 
-    // Écouter les changements de statut de la connexion
-    window.addEventListener('online', loadMessagesFromFirebase);
-    window.addEventListener('offline', () => {
-      messagesDiv.innerHTML = '<div>Vous êtes hors ligne. Les messages peuvent être récupérés dès que vous serez en ligne.</div>';
+    // Fonction pour ajouter un utilisateur à Firebase
+    function addUserToFirebase(username) {
+      const usersRef = database.ref('users');
+      usersRef.child(username).set({ password: passwordInput.value });
+      updateUsersList();
+    }
+
+    // Fonction pour retirer un utilisateur de Firebase
+    function removeUserFromFirebase(username) {
+      const usersRef = database.ref('users');
+      usersRef.child(username).remove();
+      updateUsersList();
+    }
+
+    // Fonction pour mettre à jour la liste des utilisateurs connectés
+    function updateUsersList() {
+      const usersRef = database.ref('users');
+      usersRef.once('value', (snapshot) => {
+        usersListDiv.innerHTML = '';
+        let count = 0;
+        snapshot.forEach((childSnapshot) => {
+          const username = childSnapshot.key;
+          const li = document.createElement('li');
+          li.textContent = username;
+          usersListDiv.appendChild(li);
+          count++;
+        });
+        usersCountSpan.textContent = count;
+      });
+    }
+
+    emojiBtn.addEventListener('click', () => {
+      emojiContainer.style.display = emojiContainer.style.display === 'none' ? 'block' : 'none';
     });
 
-    // Gestion de l'appui sur la touche "Entrée" pour envoyer un message
-    messageInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
-        sendBtn.click();
+    emojiContainer.addEventListener('click', (e) => {
+      if (e.target.classList.contains('emoji')) {
+        const emoji = e.target.getAttribute('data-emoji');
+        messageInput.value += emoji;
       }
     });
   </script>

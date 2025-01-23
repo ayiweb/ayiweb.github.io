@@ -1,26 +1,42 @@
-/* Style général */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
-  margin: 0;
-  padding: 0;
-}
-
-.utilisateur {
-  padding: 20px;
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
   background-color: #007BFF;
   color: white;
-  text-align: center;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
 }
 
-.utilisateur input, .utilisateur button {
+.user-info {
+  margin-top: 20px;
+}
+
+#usernameDisplay {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#disconnectBtnSidebar {
+  margin-top: 10px;
   padding: 10px;
-  margin: 5px;
+  background-color: red;
+  border: none;
+  color: white;
+  cursor: pointer;
   border-radius: 5px;
+}
+
+#disconnectBtnSidebar:hover {
+  background-color: #cc0000;
 }
 
 /* Style du chat */
 .chat {
+  margin-left: 250px; /* Espace pour la sidebar */
   display: flex;
   flex-direction: column;
   max-width: 400px;
@@ -28,7 +44,7 @@ body {
   background-color: white;
   border-radius: 10px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  width: 100%;  /* Garantit que le chat occupe toute la largeur disponible sur petits écrans */
+  width: 100%;
 }
 
 /* Style des messages */
@@ -62,7 +78,7 @@ body {
   align-self: flex-start;
 }
 
-/* Style du container d'entrée */
+/* Conteneur d'entrée de message */
 .input-container {
   display: flex;
   padding: 10px;
@@ -90,80 +106,121 @@ body {
 }
 
 /* Responsive styles */
-
-/* Sur les écrans de plus de 600px, on définit une largeur plus grande pour le chat */
-@media (min-width: 600px) {
-  .chat {
-    max-width: 500px; /* Augmenter la largeur du chat */
-  }
-}
-
-/* Sur les écrans de plus de 768px (tablettes en paysage, ordinateurs), ajuster la taille des éléments */
 @media (min-width: 768px) {
-  .utilisateur input, .utilisateur button {
-    padding: 12px;
-    font-size: 16px;
-  }
-
-  .input-container input {
-    font-size: 16px;
-  }
-
-  .input-container button {
-    font-size: 16px;
+  .sidebar {
+    width: 300px; /* Sidebar plus large pour les grands écrans */
   }
 
   .chat {
-    max-width: 600px; /* Largeur plus large pour les écrans plus grands */
-  }
-
-  .messages {
-    height: 350px; /* Augmenter la hauteur des messages */
+    margin-left: 300px; /* Ajuster le chat pour la largeur de la sidebar */
   }
 }
 
-/* Sur les écrans de plus de 1024px (ordinateurs de bureau), ajuster la mise en page si nécessaire */
-@media (min-width: 1024px) {
-  .chat {
-    max-width: 700px; /* Largeur encore plus grande pour les grands écrans */
-  }
-
-  .messages {
-    height: 400px; /* Ajuster la hauteur des messages */
-  }
-}
-
-/* Style des messages */
-.messages {
-  padding: 10px;
-  height: 300px;
-  overflow-y: auto;
-  border-bottom: 1px solid #ccc;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.messages div {
-  padding: 10px;
-  border-radius: 20px;
-  max-width: 80%; /* Limiter la largeur des bulles */
-  word-wrap: break-word;
-  display: inline-block;
-}
-
-/* Message de l'utilisateur (bulle bleue) */
-.messages .my-message {
-  background-color: #007BFF; /* Couleur bleue pour l'utilisateur */
+/* Style de la sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -300px; /* Cacher la sidebar au départ */
+  width: 250px;
+  height: 100%;
+  background-color: #333;
   color: white;
-  align-self: flex-end;  /* Aligner le message à droite */
-  border-radius: 15px 15px 0 15px;  /* Coin arrondi à gauche */
+  padding: 20px;
+  transition: left 0.3s ease; /* Animation pour l'apparition de la sidebar */
+  z-index: 1000;
 }
 
-/* Message d'un autre utilisateur (bulle grise) */
-.messages .other-message {
-  background-color: #f0f0f0; /* Couleur gris clair pour les autres utilisateurs */
-  color: #333;
-  align-self: flex-start; /* Aligner le message à gauche */
-  border-radius: 15px 15px 15px 0; /* Coin arrondi à droite */
+/* Lorsque la sidebar est active (visible) */
+.sidebar.show {
+  left: 0; /* Positionne la sidebar à gauche de l'écran */
 }
+
+/* Style de la liste des utilisateurs */
+.users-list {
+  margin-top: 20px;
+}
+
+.users-list h3 {
+  color: white;
+  font-size: 18px;
+}
+
+.users-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.users-list ul li {
+  padding: 10px;
+  border-bottom: 1px solid #444;
+}
+
+.users-list ul li:hover {
+  background-color: #555;
+  cursor: pointer;
+}
+
+/* Style du bouton pour ouvrir la sidebar */
+.open-sidebar-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  padding: 10px;
+  background-color: #007BFF;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.open-sidebar-btn:hover {
+  background-color: #0056b3;
+}
+.reply {
+  font-style: italic;
+  color: gray;
+  margin-bottom: 5px;
+}
+
+.my-message {
+  background-color: #a0e1fd; /* Couleur bleue pour les messages envoyés */
+  border-radius: 20px;
+  padding: 10px;
+  margin: 5px 0;
+  display: inline-block;
+  max-width: 60%;
+  text-align: left;
+}
+
+.message {
+  background-color: #f0f0f0; /* Couleur grise pour les messages des autres utilisateurs */
+  border-radius: 20px;
+  padding: 10px;
+  margin: 5px 0;
+  display: inline-block;
+  max-width: 60%;
+  text-align: left;
+}
+
+.reply {
+  font-size: 0.9em;
+  color: gray;
+  margin-top: 5px;
+  font-style: italic;
+}
+
+.delete-btn {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.delete-btn:hover {
+  background-color: darkred;
+}
+
