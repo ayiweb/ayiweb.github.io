@@ -20,6 +20,8 @@
 
   <div class="chat" style="display:none;">
     <div class="messages"></div>
+    <div id="loading" style="display: block; text-align: center; font-size: 20px;">Chargement...</div>
+
     <button class="open-sidebar-btn">Utilisateurs</button>
     <div class="users-list sidebar">
       <h3>Utilisateurs connectés (<span id="usersCount">0</span>)</h3>
@@ -41,9 +43,13 @@
   </div>
 
   <div id="confirmationMessage" style="display:none;">Message envoyé !</div>
-  <script src="chat.js"></script>
-  <script>
+   <button id="disconnectBtn" style="display:none;">Déconnecter</button>
+  </div>
+
   
+  <script src="chat.js"></script>
+  
+  <script>
     // Initialisation Firebase
     const firebaseConfig = {
       apiKey: "AIzaSyAQeHWr_vUiQmVVgJJ_cOF9qrCCLd7IJNc",
@@ -177,11 +183,10 @@
           messageElement.appendChild(deleteBtn);
         }
 
-        // Afficher la réponse avec le nom de l'utilisateur auquel on répond
         if (replyingToMessageId) {
           const replyElement = document.createElement('div');
           replyElement.classList.add('reply');
-          replyElement.textContent = `Répondre à: ${replyingToMessageId}`; // Ajout de l'ID ici
+          replyElement.textContent = `Répondre à: ${replyingToMessageId}`;
           messageElement.appendChild(replyElement);
         }
 
@@ -209,8 +214,12 @@
 
     // Fonction pour charger les messages depuis Firebase (une seule fois)
     function loadMessagesFromFirebase() {
+      const loadingMessage = document.getElementById('loading');
+      loadingMessage.style.display = 'block';  // Afficher le message de chargement
+      
       const messagesRef = database.ref('messages');
       messagesRef.once('value', (snapshot) => {
+        messagesDiv.innerHTML = '';  // Clear existing messages
         snapshot.forEach((childSnapshot) => {
           const data = childSnapshot.val();
           const messageElement = document.createElement('div');
@@ -227,24 +236,23 @@
             messageElement.appendChild(deleteBtn);
           }
 
-          // Si le message est une réponse, afficher le nom de l'utilisateur auquel on répond
+          // Affichage des réponses
           if (data.replyingToMessageId) {
-            const replyElement = document.createElement('div');
-            replyElement.classList.add('reply');
-
-            // Chercher le message parent pour récupérer le nom de l'utilisateur auquel on répond
-            messagesRef.orderByChild('messageId').equalTo(data.replyingToMessageId).once('child_added', (parentSnapshot) => {
-              const parentData = parentSnapshot.val();
-              if (parentData) {
-                replyElement.textContent = `Réponse à: ${parentData.username}`;
-                messageElement.appendChild(replyElement);
-              }
+            const replyMessageRef = database.ref('messages').orderByChild('messageId').equalTo(data.replyingToMessageId);
+            replyMessageRef.once('child_added', (snapshot) => {
+              const replyMessage = snapshot.val();
+              const replyElement = document.createElement('div');
+              replyElement.classList.add('reply');
+              replyElement.textContent = `Réponse à: ${replyMessage.username}: ${replyMessage.message}`;
+              messageElement.appendChild(replyElement);
             });
           }
 
           messagesDiv.appendChild(messageElement);
         });
         messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        
+        loadingMessage.style.display = 'none';  // Cacher le message de chargement une fois les messages chargés
       });
     }
 
@@ -261,9 +269,9 @@
     // Fonction pour afficher un message de confirmation
     function showConfirmationMessage() {
       const confirmationMessage = document.getElementById('confirmationMessage');
-      confirmationMessage.style.display = 'block';
+      confirmationMessage.style.display = 'block';  // Afficher le message de confirmation
       setTimeout(() => {
-        confirmationMessage.style.display = 'none';
+        confirmationMessage.style.display = 'none';  // Cacher le message de confirmation après 2 secondes
       }, 2000);
     }
 
