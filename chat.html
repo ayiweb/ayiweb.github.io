@@ -43,9 +43,6 @@
   </div>
 
   <div id="confirmationMessage" style="display:none;">Message envoyé !</div>
-   <button id="disconnectBtn" style="display:none;">Déconnecter</button>
-  </div>
-
   
   <script src="chat.js"></script>
   
@@ -212,44 +209,43 @@
       });
     }
 
-    // Fonction pour charger les messages depuis Firebase (une seule fois)
+    // Fonction pour charger les messages depuis Firebase en temps réel
     function loadMessagesFromFirebase() {
       const loadingMessage = document.getElementById('loading');
       loadingMessage.style.display = 'block';  // Afficher le message de chargement
       
       const messagesRef = database.ref('messages');
-      messagesRef.once('value', (snapshot) => {
-        messagesDiv.innerHTML = '';  // Clear existing messages
-        snapshot.forEach((childSnapshot) => {
-          const data = childSnapshot.val();
-          const messageElement = document.createElement('div');
-          messageElement.classList.add('message');
-          messageElement.setAttribute('data-message-id', data.messageId);
-          messageElement.textContent = `${data.username}: ${data.message}`;
+      
+      // Listener en temps réel
+      messagesRef.on('child_added', (snapshot) => {
+        const data = snapshot.val();
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('message');
+        messageElement.setAttribute('data-message-id', data.messageId);
+        messageElement.textContent = `${data.username}: ${data.message}`;
 
-          // Ajouter un bouton de suppression uniquement si l'utilisateur est celui qui a envoyé le message
-          const username = localStorage.getItem('username');
-          if (data.username === username) {
-            const deleteBtn = document.createElement('button');
-            deleteBtn.textContent = 'Supprimer';
-            deleteBtn.classList.add('delete-btn');
-            messageElement.appendChild(deleteBtn);
-          }
+        // Ajouter un bouton de suppression uniquement si l'utilisateur est celui qui a envoyé le message
+        const username = localStorage.getItem('username');
+        if (data.username === username) {
+          const deleteBtn = document.createElement('button');
+          deleteBtn.textContent = 'Supprimer';
+          deleteBtn.classList.add('delete-btn');
+          messageElement.appendChild(deleteBtn);
+        }
 
-          // Affichage des réponses
-          if (data.replyingToMessageId) {
-            const replyMessageRef = database.ref('messages').orderByChild('messageId').equalTo(data.replyingToMessageId);
-            replyMessageRef.once('child_added', (snapshot) => {
-              const replyMessage = snapshot.val();
-              const replyElement = document.createElement('div');
-              replyElement.classList.add('reply');
-              replyElement.textContent = `Réponse à: ${replyMessage.username}: ${replyMessage.message}`;
-              messageElement.appendChild(replyElement);
-            });
-          }
+        // Affichage des réponses
+        if (data.replyingToMessageId) {
+          const replyMessageRef = database.ref('messages').orderByChild('messageId').equalTo(data.replyingToMessageId);
+          replyMessageRef.once('child_added', (snapshot) => {
+            const replyMessage = snapshot.val();
+            const replyElement = document.createElement('div');
+            replyElement.classList.add('reply');
+            replyElement.textContent = `Réponse à: ${replyMessage.username}: ${replyMessage.message}`;
+            messageElement.appendChild(replyElement);
+          });
+        }
 
-          messagesDiv.appendChild(messageElement);
-        });
+        messagesDiv.appendChild(messageElement);
         messagesDiv.scrollTop = messagesDiv.scrollHeight;
         
         loadingMessage.style.display = 'none';  // Cacher le message de chargement une fois les messages chargés
