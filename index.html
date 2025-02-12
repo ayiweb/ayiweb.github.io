@@ -1,127 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Unitech Conseil vous accompagnera dans la gestion de votre vie amoureuse et vous enseignera l'informatique sur Android avec un jeu de documents à télécharger gratuitement. Découvrez des astuces pour améliorer votre vie, trouver l'amour et vous initier à l'informatique.">
-    <meta name="keywords" content="Amour, Informatique, Technologie, Formation, Astuces de vie, Téléchargement gratuit">
-    <meta name="author" content="Ruban Joseph">
-    <meta property="og:title" content="Découvrez des astuces pour améliorer votre vie, trouver l'amour et s'initier à l'informatique">
-    <meta property="og:description" content="Unitech Conseil vous accompagnera dans la gestion de votre vie amoureuse et vous enseignera l'informatique sur Android avec un jeu de documents à télécharger gratuitement. Découvrez des astuces pour améliorer votre vie, trouver l'amour et vous initier à l'informatique.">
-    <meta property="og:image" content="https://drive.google.com/thumbnail?id=1-GpXHFa2IYFEBoO9BbtOT4F1uBlDxk3c">
-    <meta property="og:url" content="https://unitechconseil.online">
-    <meta name="google-adsense-account" content="ca-pub-7979799450178267">
-    <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-M2XBSDLFQZ"></script>
-        <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'G-M2XBSDLFQZ');
-        </script>
-    <link rel="icon" href="https://drive.google.com/thumbnail?id=1gIl6kFHNIVWPKRyXkneCNJ_LX9UqdSuH" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/css/home.css">
-    <link rel="stylesheet" href="css/style.css">
-    <title>Découvrez des astuces pour améliorer votre vie, trouver l'amour et s'initier à l'informatique | Unitech Conseil</title>
+    <link rel="stylesheet" href="css/css/all.css">
+    <link rel="stylesheet" href="css/css/all.min.css">
+    <link rel="stylesheet" href="css/css/fontawesome.css">
+    <link rel="stylesheet" href="css/css/fontawesome.min.css">
+    <link rel="stylesheet" href="css/config.css">
+    <link rel="stylesheet" href="css/home.css">
+    <title>Application Mobile</title>
 </head>
 <body>
-    <div class="container">
-        <!--Configurztion de mon site web-->
-        <section>
-            <menu id="menu"></menu>
-            <div id="customDialog" class="alert"></div>
-            <div class="formulaire"></div>
-            <footer class="mobile-footer"></footer>
-            <div class="placement">
-                <div class="usersdetails" id="userDetails"></div>
-            </div>
-        </section>
-         <!--Configurztion de mon site web-->
-
-        <!--En tete de mon site la partie hedder-->
+    <div id="not-available">Cette application est disponible uniquement sur mobile et tablette.</div>
+    <div id="app">
         <header>
-            <section id="accueil" class="accueil">
-                <div class="texte home">
-                    <h1 class="title">BIENVENUE A UNITECH CONSEIL</h1>
-                    <h2 class="souTitle">Formations et astuces informatique, phrases et expressions anglais, documents a telecharger gratuits !</h2>
-                    <p>
-                        Découvrez Unitech Conseil : votre expert en formation informatique et anglais professionnel. Explorez notre collection de documents gratuits pour développer vos compétences dès maintenant !
-                    </p>
-                    <button>Abonnez-vous a notre chaine</button>
-                </div>
-                <div class="images home">
-                    <div class="mySlides fade active">
-                        <img src="/images/buseniss (1).png" alt="">
-                        <p></p>
-                    </div>
-                    
-                    <div class="mySlides fade">
-                        <img src="/images/buseniss (2).png" alt="">
-                        <p></p>
-                    </div>
-
-                    <div class="mySlides fade">
-                        <img src="/images/buseniss (3).png" alt="">
-                        <p></p>
-                    </div>
-                    
-                </div>
-            </section>
+            <button onclick="toggleMenu()"><i class="fa fa-bars"></i></button>
+            <div id="profile_bar" class="barProfile"></div>
         </header>
-        
-        <!--content de mon site-->
-       <div class="content">
-        <main>
-            <!-- Nouvelle section Freelance -->
-            <div class="freelancer-section" style="display: none;">
-                <div>
-                    <h1>Services Freelance</h1>
-                <p class="">En tant que freelance, je propose divers services pour aider à la création et à la gestion de formulaires en ligne. Que vous ayez besoin d'une solution sur mesure ou d'une intégration avec des outils spécifiques, je suis là pour vous accompagner.</p>
-                </div>
-                <button class="devis"><a href="services.html">Demandez moi un devi</a></button>
-                <div class="freelancer-services">
-                    <section class="freelance-service">
-                        <h2>Formulaires Personnalisés</h2>
-                        <p>Création de formulaires adaptés à vos besoins spécifiques avec intégration personnalisée.</p>
-                    </section>
-                    <section class="freelance-service">
-                        <h2>Intégration avec des APIs</h2>
-                        <p>Intégration de vos formulaires avec des services tiers comme Firebase, Google Sheets, ou des solutions de messagerie.</p>
-                    </section>
-                    <section class="freelance-service">
-                        <h2>Support Technique</h2>
-                        <p>Assistance technique pour la mise en place, la maintenance et la résolution de problèmes liés à vos formulaires.</p>
-                    </section>
-                </div>
-            </div>
-            
-            <div class="actualite">
-                <!--Les articles récents de mon site web-->
-                <div id="Articles" class="articles"></div>
-                <!--Les articles mis à jour de mon site web-->
-                <div id="Articles-update" class="articles-update"></div>
-            </div>
-            <section><div id="livres"></div></section>
-        </main>
+        <div id="menu">
+            <button onclick="toggleMenu()"><i class="fa fa-close"></i></button>
+            <div id="nav"></div>
         </div>
+        <div class="content">
+           <div id="filter-bar"></div>
+            <div class="search" id="searchContainer">
+                <input type="text" id="searchInput" placeholder="Search by SousTitle">
+            </div>
+            <select id="type-select" style="display: none;">
+                <option value="">Sélectionner un type</option>
+            </select>
+            <div class="cardSlide">
+                <div class="card">
+                    <div class="items youtube">
+                        <h2>AyiWeb</h2>
+                        <img src="/images/icons8-youtube.gif" alt="">
+                        <p>Chanel prensipal pour jwenn tout fomasyon nou yo gratis sou android ou</p>
+                        <button onclick="chaine()">Swiv nou kounye a</button>
+                    </div>
+                    <div class="items whatsapp">
+                        <h2>Chanel ak Gwoup</h2>
+                        <img src="/images/icons8-whatsapp.gif" alt="">
+                        <p>Ou ka swwiv chanel ak gwoup ke ou vle e ou ka ajote gwoup pa ou gratis</p>
+                        <button onclick="addGroup()">Chanèl / Gwoup</button>
+                    </div>
+                    <div class="items tiktoks" style="display: none;">
+                        <h2>C.Tiktok</h2>
+                        <img src="/images/icons8-tiktok.gif" alt="">
+                        <p>Aouter votre Channel Tiktok</p>
+                        <button>Ajoute/Ajoute</button>
+                    </div>
+                </div>
+            </div>
 
-        
+            <h2 class="title">Atik ki ap enterese ou</h2>
+            <div id="blog" id="filter-bar"></div>
+
+            <h2 class="title">Dokiman enfomatik</h2>
+                    <div id="books-container" class="book"></div>
+        </div>
+        <footer id="footer">© 2024</footer>
     </div>
-    
-    <!-- Include Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
 
-    <!-- Scripts JavaScript -->
-    <script src="/js/asset.js" defer></script>
-    <script src="/js/script.js" defer></script>
-    <script src="/js/button.js" defer></script>
-    
-    <script src="/js/home.js" defer></script>
+     <!-- Include Firebase SDK -->
+     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-database.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+ 
 
+    <script src="js/asset.js" defer></script>
+    <script src="js/config.js" defer></script>
+    <script src="js/blog.js" defer></script>
+    <script>
+        function toggleMenu() {
+            document.getElementById('menu').classList.toggle('open');
+        }
+    </script>
 </body>
 </html>

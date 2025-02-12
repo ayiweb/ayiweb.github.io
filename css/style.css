@@ -1,536 +1,427 @@
 body{
-  display: none;
+   background: gray;
+   box-sizing: border-box;
+   padding: 0;
+   margin: 0;
 }
-/*Body de mon application web*/
-@media screen and (max-width: 600px){
-  :root {
-    --none: #00000000;         /* Noir */
-    --noir: #000000;         /* Noir */
-    --orange: #ff7f00;       /* Orange */
-    --vert: #008000;         /* Vert */
-    --blue: #0011ff;    /* Bleu ciel */
-    --blanc: #ffffff;        /* Blanc */
-    --gray: #eee9e9;        /* Blanc */
-  }
-  body{
-    display: block;
-    margin: 0px;
-    padding: 0px;
-    overflow-x: hidden;
-    background-color: white;
-  }
-  html, *{
-    box-sizing: border-box;
-  }
-  img{
-    width: 100%;
-  }
-  a{
-    text-decoration: none;
-  }
-  button{
-    cursor: pointer;
-  }
-  button:hover{
+.body{
+    background-color: black;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: white;
-    background-color: #0011ff;
-  }
-  
 }
-
-/* alert de mon application web*/
-@media screen and (max-width: 600px){
-  .alert{
+.btnMenu{
     display: none;
-    margin: 10px auto;
-    max-width: 300px;
+}
+.alert{
+    background-color: white;
+    box-shadow: 0px 0px 3px 1px black;
     min-width: 200px;
-    width: 100%;
-    position: fixed;
+    max-width: 300px;
+    min-height: 100px;
+    margin: auto;
+    position: absolute;
     top: 50%;
     left: 50%;
-    background: black;
-    color: var(--blanc);
     transform: translate(-50%, -50%);
-    border-radius: 10px;
-    z-index: 90;
-    -webkit-box-shadow: 1px 1px 16px 0px rgba(9,0,255,1);
--moz-box-shadow: 1px 1px 16px 0px rgba(9,0,255,1);
-box-shadow: 1px 1px 16px 0px rgba(9,0,255,1);
-  }
-  .btnconnection{
-    border-radius: 10px;
-    background-color: var(--blanc);
-    margin:5px auto 10px auto;
-    display: block;
-  }
-  .close-button{
-    border: 1px solid blue;
-    padding: 5px 8px;
-    background-color: black;
-    color: var(--orange);
-    font-size: 18px;
-    height: 20px;
-    max-width: 20px;
-    min-width: 20px;
-    cursor: pointer;
-  }
-  .alertTitle{
-    font-size: 18px;
-    color: blue;
-    text-align: center;
-  }
-  .alertp{
-    font-size: 14px;
-    text-align: center;
-  }
-}
-
-/* menu de mon application web */
-@media screen and (max-width: 600px){
- 
-  .barmenu{
-    min-width: 100%;
-    padding: 1px 2px 1px 2px;
-    background: blue;
-    position: fixed;
-    top: 0px;
-    left: 0;
-    max-height: 50px;
-    min-height: 50px;
     z-index: 109;
-    border: 4px solid blue;
-    display: flex;
+    display: none;
     align-items: center;
-    justify-content: space-around;
-  }
-  .btnmenu{
-    background: white;
-    position: absolute;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 10px;
+}
+.alert h2{
+    text-align: center;
+    color: blue;
+    margin: 3px;
+}
+.alert p{
+    text-align: center;
+    margin: 2px;
+}
+.alert button{
+    display: block;
+    margin: 5px auto;
+    border: 0;
+    padding: 5px;
+    background-color: black;
+    color: white;
+}
+
+menu{
+    position: fixed;
     top: 0;
     left: 0;
-    height: 40px;
-    width: 40px;
+    z-index: 109;
+    background-color: black;
+    width: 100%;
+    height: 50px;
+    margin: 0px auto;
+    padding: 0px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    font-size: 36px;
-  }
-  .btnmenu i:nth-child(2){
+}
+menu nav{
     display: none;
-  }
-  .rc{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    padding: 5px;
-    height: 40px;
-    width: max-content;
-    background: white;
-    position: absolute;
-    top: 0;
-    right: 0;
-    font-size: 14px;
-  }
-  .rcprofile{
-    border: 1px solid orangered;
-    height: 45px;
-    width: 45px;
-    border-radius: 50%;
-    font-size: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-
-
-  .menu{
-    display: none;
-    width: 80%;
-    background: black;
+    width: 70%;
+    background-color: rgb(13, 62, 105);
+    min-height: 100vh;
+    height: 100%;
     position: fixed;
     left: 0;
-    top: 50px;
-    height: 100vh;
-    z-index: 108;
-  }
-  .art-myuser{
-    background: white;
-    max-height: 150px;
-  }
-  .art-myuser img{
-    width: 70px;
-    width: 70px;
-  }
+    top: 0;
+    transition: opacity 0.5s ease; /* Apply fade transition */
+    opacity: 0; /* Hidden by default */
+}
+.art-myuser{
+    display: block;
+    background-color: white;
+}
 
-  .sideItem p{
-    border: 1px solid rgb(75, 72, 72);
-    margin: 10px 10px;
-    padding: 2px 10px;
+    /* When the menu is shown */
+.fade-in {
+    display: block; /* Make the div visible */
+    opacity: 1;     /* Fully visible */
+}
+
+.fade-out {
+    opacity: 0;     /* Hidden */
+    display: none;  /* Hidden from view */
+}
+#openBtn{
+    display: block;
+    padding: 3px;
+    border: none;
+    height: 30px;
+    width: 30px;
+    font-size: 20px;
+}
+menu nav ul{
+    display: block;
+}
+menu nav ul li{
+    margin-bottom: 5px;
+}
+
+
+.art-myuser{
+    display: none;
+}
+menu nav ul{
+    padding: 1px;
+    margin: 0px;
+    display: block;
+    gap: 5px;
+    list-style: none;
+    align-items: center;
+}
+menu nav ul li{
+    color: white;
+    font-size: 14px;
+    border: 1px solid;
+    padding: 2px 6px;
     cursor: pointer;
-    color: white;
-  }
-  .sideItem p a{
-    color: white;
-  }
-  .sideItem p:hover, .sideItem p a:hover{
-    background: white;
-    color: red;
-    text-align: left;
-    -webkit-box-shadow: inset 26px 11px 61px -1px rgba(18,196,255,1);
-  -moz-box-shadow: inset 26px 11px 61px -1px rgba(18,196,255,1);
-  box-shadow: inset 26px 11px 61px -1px rgba(18,196,255,1);
-  }
-  .sideItem p .fa{
-    margin-right: 5px;
-  }
-  .sideItem p:nth-child(1){
-    background: #0011ff;
-  }
-  .sideItem p:nth-child(1):hover{
-    box-shadow: inset 26px 11px 61px -1px rgba(18,196,255,1);
-  }
-  .sideItem p:nth-last-child(1),
-  .sideItem p:nth-last-child(2){
-    display: none;
-  }
-
-  .logos{
-    width: 50px;
-    height: 50px;
-    display: none;
-  }
-
+}
+menu nav ul li a{
+    color: white      ;
+}
+menu nav ul li:hover{
+    background-color: aliceblue;
+    color: black;
 }
 
-/* container de mon application we*/
-@media screen and (max-width: 600px){
-  .container{
-    margin-top: 50px;
-    margin-bottom: 50px;
-  }
+
+.card{
+  min-width: 98%;
+  display: flex;
+  overflow-x: auto;
+  overflow-x: scroll;
+  margin: auto;
+
+}
+/* width and height are mandatory */
+/* width */
+::-webkit-scrollbar {
+  max-width: 2px;
+  height: 3px;
+  cursor: pointer;
 }
 
-/* splach load de mon application we*/
-@media screen and (max-width: 600px){
-  /*loadding page de mon site web*/
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  cursor: pointer;
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: red; 
+  cursor: pointer;
+  border-radius: 10px;
+}
 
-#splash-screen{
-  width: max-content;
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  cursor: pointer;
+  background: #b30000; 
+}
+
+
+.card::after{
+  content: "";
   display: block;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: transparent;
+  clear: both;
 }
 
-.loader {
+.card .items{
+  min-width: 250px;
+  height: 100%;
+  margin: 5px;
+  padding: 5px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 0px 2px 1px;
+}
+.card .youtube{
+  background-color: red;
+}
+.card .whatsapp{
+  background: green;
+}
+.card .tiktoks{
+  background-color: black;
+}
+.card .items img{
+  border: 2px solid rgb(197, 197, 197);
+  border-radius: 7px;
+  margin: auto;
+  align-self: center;
   display: block;
-  border: 16px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 16px solid blue;
-  border-right: 16px solid green;
-  border-bottom: 16px solid red;
-  border-left: 16px solid pink;
-  width: 120px;
-  height: 120px;
-  -webkit-animation: spin 2s linear infinite;
-  animation: spin 2s linear infinite;
+}
+.items h2{
+  font-size: 16PX;
+  text-align: center;
+  margin: 2px;
+  color: #ffffff;
+  margin: 2px;
+}
+.items p{
+  font-size: 14px;
+  text-align: center;
+  color: white;
+  margin: 2px;
+}
+.card .items button{
+  background-color: rgb(0, 140, 255);
+  padding: 6px;
+  font-size: 14px;
+  display: block;
+  margin:5px auto;
+  cursor: pointer;
+  color: white;
+  border: none;
 }
 
-@-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
 
 
-}
-
-@media screen and (max-width: 600px){
-  /* Formulaire d'inscription*/
+/* Formulaire d'inscription*/
 
 .formulaire{
-  display: none;
-  background-color: rgb(2, 2, 39);
-  width: 100%;
-  height: 100vh;
-  min-width: 200px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 10px;
-  border-radius: 10px;
-  color: rgb(0, 0, 0);
-  z-index: 1;
-  margin: auto;
-  box-shadow: 0px 0px 12px 3px gray;
-}
-.form{
-  background-color: rgba(255, 255, 255, 0);
-  border-radius: 10px;
-  height:100vh;
-  width: 100%;
+    display: none;
+    background-color: rgb(2, 2, 39);
+    max-width: 350px;
+    height: auto;
+    min-width: 200px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    border-radius: 10px;
+    color: rgb(0, 0, 0);
+    z-index: 1;
+    margin: auto;
+    box-shadow: 0px 0px 12px 3px gray;
+  }
+  .form{
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 10px;
+    height:100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
   
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-
-}
-.formClose{
-  max-width: 100px;
-}
-.form > div{
-  width: 100%;
-  height: max-content;
-  border: 2px solid white;
-}
-
-.form h1{
-text-align: center;
-border: 1px solid blue;
-border-radius: 19px;
-}
-
-
-
-.form-section.active {
-display: block;
-border: 2px solid;
-}
-
-.form-section{
-display: none;
-border: 2px solid;
-padding: 10px;
-margin-top: 10px;
-border-radius: 16px;
-}
-
-
-
-.logbtn{
-display: flex;
-justify-content: flex-end;
-gap: 10px; /* Ajoute un espacement entre les boutons */
-margin-top: 10px; /* Ajoute un espacement en haut des boutons */
-}
-.logbtn button{
-border-radius: 20px;
-width: 100%;
-display: inline-block;
-color: rgb(0, 42, 105);
-padding: 6px;
-}
-.logbtn .first{
-display: inline-block;
-color: rgb(206, 25, 25);
-}
-.formulaire button{
-border-radius: 20px;
-width: 100%;
-display: inline-block;
-color: rgb(255, 253, 253);
-padding: 6px;
-background-color: rgba(255, 255, 255, 0.068);
-}
-
-
-
-#signup{
-  display: none;
-}
-
-.formulaire .btninscription{
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-  border-radius: 8px;
-  border-bottom: 1px solid var(--blue);
-  background-color: white;
-}
-
-.formulaire .btninscription button{
-  gap: 10px;
-  width: 100%;
-  background-color: var(--none);
-  color: rgb(0, 0, 0);
-  cursor: pointer;
-  border: 1px;
-  border-radius: 2px;
-}
-.formulaire .input{
-  border-bottom: 1px solid var(--blue);
-  margin-top: 20px;
-  margin-bottom: 10px;
-}
-.formulaire .input input{
-  padding: 8px;
-  background: none;
-  border: none;
-  color: var(--noir);
-  width: 100%;
-}
-.formulaire .input input:focus, .formulaire select{
-  outline: none;
-}
-.formulaire select{ 
-  padding:8px ;
-  background-color: var(--none);
-  border: none;
-  color: blue;
-}
-#result{
-  display: none;
-}
-
-/*input file image*/
-.image{
-  display: flex;
-  align-items: center;
-  width: max-content;
-  margin-top: 10px;
-}
-.image img{
-  height: 50px;
-  width: 50px;
-}
-#imageInput {
-display: none; /* Hide the default file input */
-}
-
-.custom-file-input {
-width: max-content;
-height: 30px;
-display: inline-block;
-padding: 10px 15px;
-font-size: 16px;
-text-align: center;
-font-weight: bold;
-cursor: pointer;
-background-color: var(--none);
-color: #fff;
-border: none;
-border-radius: 5px;
-}
-
-.custom-file-input:hover {
-background-color: #45a049;
-}
-
-.custom-file-input:active {
-background-color: #398439;
-}
-label{
-display: inline-block;
-}
-
-/*fin */
-
-
-.flag {
-  font-size: 38px;
-  height: 33px;
-  margin-right: 0px;
-  background-color: gray;
-}
-
-#login{
-  border: 1px solid white;
-  border-radius: 10px;
+  }
+  .formClose{
+    max-width: 100px;
+  }
+  .form > div{
+    width: 100%;
+    height: max-content;
+    border: 2px solid white;
+  }
+  
+  .form h1{
+  text-align: center;
+  border: 1px solid blue;
+  border-radius: 19px;
+  }
+  
+  
+  
+  .form-section.active {
   display: block;
+  border: 2px solid;
+  }
+  
+  .form-section{
+  display: none;
+  border: 2px solid;
   padding: 10px;
-}
-
-.loginsection{
-border: 2px solid;
-padding: 10px;
-margin-top: 10px;
-border-radius: 16px;
-}
-
-
-}
-
-
-/*pied de mon application web*/
-@media screen and (max-width: 600px){
-  /* footer de mon site*/
-.mobile-footer {
+  margin-top: 10px;
+  border-radius: 16px;
+  }
+  
+  
+  
+  .logbtn{
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px; /* Ajoute un espacement entre les boutons */
+  margin-top: 10px; /* Ajoute un espacement en haut des boutons */
+  }
+  .logbtn button{
+  border-radius: 20px;
   width: 100%;
-  height: 50px;
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  z-index: 20;
-  transform: translate(-50%);
-  background-color: black;
-  border-top: 1px solid #dddddd;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 10px;
-}
+  display: inline-block;
+  color: rgb(0, 42, 105);
+  padding: 6px;
+  }
+  .logbtn .first{
+  display: inline-block;
+  color: rgb(206, 25, 25);
+  }
+  .formulaire button{
+  border-radius: 20px;
+  width: 100%;
+  display: inline-block;
+  color: rgb(255, 253, 253);
+  padding: 6px;
+  background-color: rgba(255, 255, 255, 0.068);
+  }
+  
+  
+  
+  #signup{
+    display: none;
+  }
+  
+  .formulaire .btninscription{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    border-radius: 8px;
+    border-bottom: 1px solid var(--blue);
+    background-color: white;
+  }
+  
+  .formulaire .btninscription button{
+    gap: 10px;
+    width: 100%;
+    background-color: var(--none);
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    border: 1px;
+    border-radius: 2px;
+  }
+  .formulaire .input{
+    border-bottom: 1px solid var(--blue);
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  .formulaire .input input{
+    padding: 8px;
+    background: none;
+    border: none;
+    color: var(--white);
+    width: 100%;
+  }
+  .formulaire .input input:focus, .formulaire select{
+    outline: none;
+  }
+  .formulaire select{ 
+    padding:8px ;
+    background-color: var(--none);
+    border: none;
+    color: blue;
+  }
+  #result{
+    display: none;
+  }
+  
+  /*input file image*/
+  .image{
+    display: flex;
+    align-items: center;
+    width: max-content;
+    margin-top: 10px;
+  }
+  .image img{
+    height: 50px;
+    width: 50px;
+  }
+  #imageInput {
+  display: none; /* Hide the default file input */
+  }
+  
+  .custom-file-input {
+  width: max-content;
+  height: 30px;
+  display: inline-block;
+  padding: 10px 15px;
+  font-size: 16px;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: var(--none);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  }
+  
+  .custom-file-input:hover {
+  background-color: #45a049;
+  }
+  
+  .custom-file-input:active {
+  background-color: #398439;
+  }
+  label{
+  display: inline-block;
+  }
+  
+  /*fin */
 
-.footer-list {
-  list-style: none;
-  padding: 0;
-  display: flex;
-}
 
-.footer-item {
-  margin: 0 10px;
-  text-decoration: none;
-  color: #555555;
-  font-size: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-}
+  .container{
+    background: white;
+    margin: 50px auto;
+    width: 100%;
+    box-sizing: border-box;
+  }
+@media screen and (max-width:412px) {
+    .body{
+        display: none;
+    }
+    .btnMenu{
+        display: block;
+    }
 
-/* Additional styles for the icon in the second link */
-.footer-item i {
-  font-size: 18px;
-  margin-right: 5px;
-}
-/*fin footer de mon site*/
-}
-
-
-
-
-
-/* Pour les navigateurs Webkit (Chrome, Safari, Edge, Opera) */
-::-webkit-scrollbar {
-  width: 1px;               /* Largeur de la barre de défilement */
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1;       /* Couleur de l'arrière-plan de la piste */
-}
-
-::-webkit-scrollbar-thumb {
-  background: #888;          /* Couleur de la poignée de défilement */
-  border-radius: 10px;       /* Coins arrondis de la poignée */
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #555;          /* Couleur au survol */
-}
-
-/* Pour Firefox */
-* {
-scrollbar-width: thin;       /* Largeur fine de la scrollbar */
-scrollbar-color: #888 #f1f1f1; /* Couleur de la poignée et de la piste */
+    
 }

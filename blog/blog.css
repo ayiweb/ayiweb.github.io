@@ -1,3 +1,43 @@
+#searchContainer {
+    display: none;
+  }
+  
+  .header{
+    border: 2px solid red;
+    overflow: hidden;
+    position: relative;
+  }
+  iframe {
+    margin-top: 20px;
+    width: 100%;
+  }
+    /* Ajoutez ici la valeur de la marge supĆ©rieure souhaitĆ©e */
+  header{
+    border: 2px solid red;
+    height: 30px;
+    position: absolute;
+    z-index: 0;
+  }
+  
+  #toggleSearchBtn {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    padding: 3px;
+    margin-left: 3px;
+    background-color: black;
+    color: white;
+  }
+  
+  #toggleSearchBtn i {
+    font-size: 12px; /* Adjust font size as needed */
+  }
+  
   .search {
     width: 100%; /* Adjust width as needed */
     margin: auto;
@@ -45,94 +85,19 @@
     background-color: #ff9100;
   }
   
-  .title{
-    background: #0095f8;
-    color: white;
-    padding: 5px;
-    margin: 5px;
-    font-size: 14px;
-  }
-
-
-  .card{
-    min-width: 98%;
-    display: flex;
-    overflow-x: auto;
-    overflow-x: scroll;
-    margin: auto;
   
-  }
-  
-.card::after{
-  content: "";
-  display: block;
-  clear: both;
-}
-
-.card .items{
-  min-width: 250px;
-  height: 100%;
-  margin: 5px;
-  padding: 5px;
-  background-color: rgb(255, 255, 255);
-  box-shadow: 0px 0px 2px 1px;
-}
-.card .youtube{
-  background-color: red;
-}
-.card .whatsapp{
-  background: green;
-}
-.card .tiktoks{
-  background-color: black;
-}
-.card .items img{
-  border: 2px solid rgb(197, 197, 197);
-  border-radius: 7px;
-  margin: auto;
-  align-self: center;
-  display: block;
-}
-.items h2{
-  font-size: 16PX;
-  text-align: center;
-  margin: 2px;
-  color: #ffffff;
-  margin: 2px;
-}
-.items p{
-  font-size: 14px;
-  text-align: center;
-  color: white;
-  margin: 2px;
-}
-.card .items button{
-  background-color: rgb(0, 140, 255);
-  padding: 6px;
-  font-size: 14px;
-  display: block;
-  margin:5px auto;
-  cursor: pointer;
-  color: white;
-  border: none;
-}
   
   
   #blog {
     position: static;
     z-index: 2;
-    display: flex;
-    overflow-x: auto;
-    overflow-x: scroll;
-    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 10px;
     min-height: 100%;
   }
   
   .post {
-    min-width: 96%;
-    max-width: 98%;
-    margin: 2px 10px;
     height: max-content;
     background-color: #fff;
     border: 1px solid #0095f8;
@@ -145,13 +110,11 @@
   
   .post .img {
     position: relative;
-    max-height: 100px;
+    max-height: 100%;
     overflow: hidden;
   }
   .post .img img{
     width: 100%;
-    height: 150px;
-    object-fit: cover;
     overflow: hidden;
   }
   
@@ -184,7 +147,6 @@
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: normal;
-      margin: 2px;
     }
   
     .barall{
@@ -322,34 +284,7 @@
   }
   
   
-  /* width and height are mandatory */
-/* width */
-::-webkit-scrollbar {
-  max-width: 2px;
-  height: 3px;
-  cursor: pointer;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey; 
-  cursor: pointer;
-  border-radius: 10px;
-}
- 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: red; 
-  cursor: pointer;
-  border-radius: 10px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  cursor: pointer;
-  background: #b30000; 
-}
-
+  
   
   @media only screen and (min-width: 769px) and (max-width: 1024px) {
     /* Styles spĆ©cifiques aux tablettes */
@@ -371,3 +306,4 @@
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
   }
+  

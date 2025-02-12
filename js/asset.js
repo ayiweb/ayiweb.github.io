@@ -1,15 +1,12 @@
 const firebaseConfig = {
-    apiKey: "AIzaSyCvqf6mNg-FsbcU7vZf52xEi6Skp9tz3yU",
-    authDomain: "signup-286f7.firebaseapp.com",
-    databaseURL: "https://signup-286f7-default-rtdb.firebaseio.com",
-    projectId: "signup-286f7",
-    storageBucket: "signup-286f7.appspot.com",
-    messagingSenderId: "579225916993",
-    appId: "1:579225916993:web:f4f70c8c24584a770018c0",
-    measurementId: "G-RH5HF2F7DN"
+  apiKey: "AIzaSyAQeHWr_vUiQmVVgJJ_cOF9qrCCLd7IJNc",
+  authDomain: "ayiweb.firebaseapp.com",
+  databaseURL: "https://ayiweb-default-rtdb.firebaseio.com",
+  projectId: "ayiweb",
+  storageBucket: "ayiweb.appspot.com",
+  messagingSenderId: "115054504556",
+  appId: "1:115054504556:web:ccd713ba01dd8f02830649"
     };
 
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
-
-

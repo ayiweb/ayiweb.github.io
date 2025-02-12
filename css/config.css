@@ -1,0 +1,179 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+#not-available {
+    display: none;
+    font-size: 20px;
+    color: red;
+    margin-top: 50px;
+}
+#app {
+    display: block;
+}
+header, footer {
+    position: fixed;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    background: #0026ff;
+    color: white;
+    text-align: center;
+    padding: 1px 0;
+}
+header { top: 0; }
+header button{
+    background-color: rgba(255, 255, 255, 0);
+    height: 40px;
+    width: 32px;
+    border: none;
+    color: white;
+    float: left;
+    margin-left: 10px;
+    font-size: 30px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer { bottom: 0; }
+#menu {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 250px;
+    height: 100%;
+    background: #444;
+    color: white;
+    padding: 2px;
+    transition: 0.3s;
+}
+#nav{
+    background-color: gray;
+    position: relative;
+    color: black;
+    height: 500px;
+    z-index: 9;
+}
+.barProfile{
+    height: 50px;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    color: black;
+    position: absolute;
+    right: 1px;
+}
+#menu.open { 
+    left: 0; 
+}
+#menu button { margin-top: 20px; }
+.content {
+    margin-top: 53px;
+    margin-bottom: 53px;
+    padding: 2px;
+    border: 2px solid lime;
+}
+
+
+
+
+/* Style général du menu */
+
+
+.menu h1 {
+    text-align: center;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+/* Style du profil utilisateur */
+.art-myuser {
+    display: block;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.art-myuser img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.art-myuser div {
+    display: flex;
+    flex-direction: column;
+}
+
+.art-myuser p {
+    margin: 3px 0;
+    font-size: 0.9em;
+}
+
+#logout a, #connecte {
+    display: block;
+    text-align: center;
+    background: red;
+    padding: 8px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Style de la liste de navigation */
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+}
+
+.menu ul li {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.menu ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1em;
+}
+
+.menu ul li:hover {
+    background-color: #444;
+}
+
+@media (min-width: 1024px) {
+    #app { display: none; }
+    #not-available { display: block; }
+}
+
+
+
+
+.listfooter span {
+    padding: 6px 5px;
+    background-color: #555;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.listfooter span a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.listfooter span:hover {
+    background-color: #ff9800;
+}

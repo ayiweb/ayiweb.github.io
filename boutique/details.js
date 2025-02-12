@@ -31,8 +31,8 @@ const decodedTitle = title
                         document.getElementById('splash-screen').style.display = 'none';
 
                         // Mise à jour des éléments avec les données récupérées
-                        document.getElementById('img').src = presentationsData.Image;
-                        document.getElementById('soustitle').textContent = presentationsData.SousTitle || '';
+                        document.getElementById('img').src = presentationsData.Images;
+                        document.getElementById('soustitle').textContent = presentationsData.SousTitre || '';
                         document.getElementById('prix').textContent = presentationsData.Prix || '';
                         document.getElementById('details').textContent = presentationsData.Details;
                         document.getElementById('lien').textContent = presentationsData.Telecharger || '0';
@@ -41,12 +41,12 @@ const decodedTitle = title
                         document.getElementById('commentcount').textContent = (presentationsData.Comments ? Object.keys(presentationsData.Comments).length : 0) || '0';
 
                         // Met à jour le lien de l'image
-                        document.getElementById('imageshow').href = presentationsData.Image;
+                        document.getElementById('imageshow').href = presentationsData.Images;
 
                         // Mise à jour des balises meta
                         const ogImageMeta = document.getElementById('ogImage');
                         if (ogImageMeta) {
-                            ogImageMeta.setAttribute('content', presentationsData.Image);
+                            ogImageMeta.setAttribute('content', presentationsData.Images);
                         }
                     }
                 }

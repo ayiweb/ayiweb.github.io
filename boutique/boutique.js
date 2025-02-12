@@ -3,7 +3,7 @@ const dbRef = firebase.database().ref('Livres');
 // Ajouter l'événement click à chaque bouton "Ajouter au panier"
 // Ajouter l'événement click à chaque bouton "Ajouter au panier"
 dbRef.once('value', (snapshot) => {
-    document.getElementById('splash-screen').style.display = 'none';
+    //document.getElementById('splash-screen').style.display = 'none';
     const booksContainer = document.getElementById('books-container');
     const detailsItems = document.getElementById('details-items');
     const typeSelect = document.getElementById('type-select'); // Votre élément <select> pour les types
@@ -37,13 +37,13 @@ dbRef.once('value', (snapshot) => {
         books.forEach(data => {
             const bookCard = document.createElement('div');
             bookCard.classList.add('book-card');
-            
+            console.log(data);
             // Ensure the title is defined, provide a fallback if it's undefined
-            const safeTitle = data.Title ? data.Title.replace(/'/g, "\\'") : 'Unknown Title';
+            const safeTitle = data.Titre ? data.Titre.replace(/'/g, "\\'") : 'Unknown Title';
             
             bookCard.innerHTML = `
-                <div class="image"><img src="${data.Image}" alt="${safeTitle}"></div>
-                <h3 data-title="${safeTitle || data.Title}">${safeTitle || data.Title}</h3>
+                <div class="image"><img src="${data.Images}" alt="${safeTitle}"></div>
+                <h3 data-title="${safeTitle || data.Titre}">${safeTitle || data.Title}</h3>
                 <p><span class="price">${data.Prix}</span> Rc</p>
                 <p style="display:none;" class="lien">${data.Telecharger}</p>
                 <p style="display:none;" data-title="${data.SousTitle || 'N/A'}">${data.SousTitle || 'N/A'}</p>
@@ -58,7 +58,7 @@ dbRef.once('value', (snapshot) => {
                 <div class="barBtn">
                     <i data-author="${data.Author || 'Unknown Author'}">${data.Author || 'Unknown Author'}</i>
                     <i style="display:none;" data-type="${data.Type || 'Unknown Type'}">${data.Type || 'Unknown Type'}</i>
-                    <button class="more" onclick="btncl('${safeTitle}')"><i class="fa-solid fa-arrow-right"></i></button>
+                    <button style="display:none;" class="more" onclick="livres('${safeTitle}')"><i class="fa-solid fa-arrow-right"></i></button>
                 </div>
             `;
             booksContainer.appendChild(bookCard);
@@ -72,13 +72,13 @@ dbRef.once('value', (snapshot) => {
     displayBooks(allBooks);
     
 
-    document.getElementById('search-bar').addEventListener('input', (e) => {
+    /*document.getElementById('search-bar').addEventListener('input', (e) => {
         const searchTerm = e.target.value.toLowerCase();
         const filteredBooks = allBooks.filter(book => 
             book.Title.toLowerCase().includes(searchTerm)
         );
         displayBooks(filteredBooks);
-    });
+    });*/
 
     typeSelect.addEventListener('change', (e) => {
         const selectedType = e.target.value;
@@ -94,7 +94,7 @@ dbRef.once('value', (snapshot) => {
     });
 });
 
-function btncl(encodedTitle) {
+function livres(encodedTitle) {
     // Decoding the title if necessary
     const decodedTitle = encodedTitle.replace(/_/g, " ").replace(/\\'/g, "'");
 
@@ -108,7 +108,7 @@ const titleWithUnderscores = decodedTitle
     console.log(titleWithUnderscores);
 
     // Redirect to the new URL with the updated title
-    window.location.href = `details.html?l=${encodeURIComponent(titleWithUnderscores)}`;
+    window.location.href = `boutique/details.html?l=${encodeURIComponent(titleWithUnderscores)}`;
 }
 
 
@@ -146,7 +146,7 @@ function submitComment(title) {
         bookRef.once('value', (snapshot) => {
             snapshot.forEach((childSnapshot) => {
                 const bookKey = childSnapshot.key;
-                const commentsRef = firebase.database().ref(`/Livres/${bookKey}/Comments`);
+                const commentsRef = firebase.database().ref(`/AYIWEB/Livres/${bookKey}/Comments`);
                 const newCommentKey = commentsRef.push().key; // Créez une nouvelle clé unique pour le commentaire
 
                 commentsRef.child(newCommentKey).set(comment); // Enregistrez le commentaire
@@ -170,7 +170,7 @@ function handleLike(title) {
         snapshot.forEach((childSnapshot) => {
             const bookKey = childSnapshot.key;
             const updates = {};
-            updates[`/Livres/${bookKey}/Likes`] = likeCount;
+            updates[`/AYIWEB/Livres/${bookKey}/Likes`] = likeCount;
             firebase.database().ref().update(updates);
         });
     });
@@ -252,12 +252,4 @@ function telecharger() {
     }
 }
 
-
-// Close button click event to clear localStorage and hide details
-document.querySelector('.close').addEventListener('click', () => {
-    localStorage.removeItem('bookDetails'); // Clear the saved book details from localStorage
-    document.getElementById('details-items').innerHTML = ''; // Clear the details section
-    document.querySelector('.docsDetails').style.display="none";
-    document.querySelector('.livres').style.display='block'; // Corrected querySelectorAll
-});
 
