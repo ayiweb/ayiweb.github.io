@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" integrity="sha512-Np5CvL0y5g0p4DpaKt6c5wJ1nHDX2XpNjUvAhj8V9s1Zlyy/1CeQv8b1LxNKDMqj1Zcw1RVHqw/xkWn0LkPTmQ==" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+  <link rel="icon" sizes="144x144" href="https://drive.google.com/thumbnail?id=1gIl6kFHNIVWPKRyXkneCNJ_LX9UqdSuH">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" />
+
+  <script src="https://cdn.rawgit.com/Keyang/node-csvtojson/d41f44aa/browser/csvtojson.min.js"></script>
+  <link rel="stylesheet" href="css/index.css">
+  <title>Tableau de Bord</title>
+  <style>
+
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <main>
+      <h1>Administrateur Unitech Conseil</h1>
+      <div class="menu">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="editeur.html">Editeur</a></li>
+          <li><a href="livre.html">Livres</a></li>
+        </ul>
+      </div>
+
+      <section class="home" id="home" >
+          <!--total visites de dashboard-->
+          <div class="totalvisite">
+            <p>Total Visits for All Countries: <span id="totalAllVisits"></span></p>
+
+            <!-- Add this input field to your HTML for filtering -->
+           </div>
+            <!--Fin total visites de dashboard-->
+        <div id="paysList" class="visiteur"></div>
+        <div id="visitorsList" class="visiteur"></div>
+      </section>
+    </main>
+  </div>
+ 
+  
+
+  
+  
+
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-database.js"></script>
+  <script src="ucadmin/js/config.js" defer></script>
+  <script src="js/config.js" defer></script>
+  <script>
+    // Initialize Firebase (Replace with your Firebase config)
+    var firebaseConfig = {
+      apiKey: "AIzaSyCvqf6mNg-FsbcU7vZf52xEi6Skp9tz3yU",
+      authDomain: "signup-286f7.firebaseapp.com",
+      databaseURL: "https://signup-286f7-default-rtdb.firebaseio.com",
+      projectId: "signup-286f7",
+      storageBucket: "signup-286f7.appspot.com",
+      messagingSenderId: "579225916993",
+      appId: "1:579225916993:web:f4f70c8c24584a770018c0",
+      measurementId: "G-RH5HF2F7DN"
+    };
+  
+    firebase.initializeApp(firebaseConfig);
+  
+    // Reference to the Firebase database
+    var database = firebase.database();
+  
+    // Reference to the "Visiteurs" node in your database
+    const visiteursRef = firebase.database().ref('Visiteurs');
+  
+    // Counter object to store the count for each country
+    const countryCount = {};
+    const countryTotalVisits = {}; // Object to store the total number of visits for each country
+    let totalAllVisits = 0; // Variable to store the total number of visits for all countries
+  
+    // Retrieve data from Firebase
+    visiteursRef.once('value').then(snapshot => {
+      const visiteursData = snapshot.val();
+  
+      const visitorsList = document.getElementById('visitorsList');
+      const paysList = document.getElementById('paysList');
+  
+      if (visiteursData) {
+        // Loop through the "Visiteurs" data
+        for (const visiteurKey in visiteursData) {
+          const visiteurData = visiteursData[visiteurKey];
+  
+          // Loop through the "Region" data within each "Visiteur"
+          for (const regionKey in visiteurData) {
+            const regionData = visiteurData[regionKey];
+  
+            // Update the country count
+            const country = regionData.pays;
+            countryCount[country] = (countryCount[country] || 0) + 1;
+  
+            // Increment total visits for the country
+            countryTotalVisits[country] = (countryTotalVisits[country] || 0) + regionData.visitCount;
+  
+            // Increment total visits for all countries
+            totalAllVisits += regionData.visitCount;
+  
+            // Create a list item for each "Region" and append it to the list
+            const listItem = document.createElement('div');
+            listItem.innerHTML = `
+              <div class="dropdown">
+                <p>${regionData.pays}<i class="flag-icon flag-icon-${regionData.pays.toLowerCase()}"></i><span class="countvisite">${regionData.visitCount}</span></p>
+                <p>Region: ${regionData.Region},</p>
+                <div class="dropdown-content">
+                  <p>${regionData.Pages},</p>
+                  <p>Codep: ${regionData.codep}, </p>
+                  <p>IP: ${regionData.ip},</p>
+                  <p>Model: ${regionData.model},</p>
+                </div>
+                <p>Heures: ${convertTimestampToTime(regionData.visitTimestamp)}</p>
+                <p>Total Visits for ${regionData.pays}: ${countryTotalVisits[country]}</p>
+                <button class="deleteButton">Delete</button>
+              </div>
+            `;
+
+            // Ajouter le gestionnaire d'événements de suppression au bouton "Supprimer"
+const deleteButton = listItem.querySelector('.deleteButton');
+deleteButton.addEventListener('click', () => {
+    // Supprimer les données associées à cet élément depuis Firebase
+    // Utilisez la référence appropriée de la base de données Firebase pour cela
+    // Par exemple :
+    const visiteursRef = database.ref(`Visiteurs/${regionData.Region}`);
+    visiteursRef.remove()
+        .then(() => {
+            console.log('Données supprimées avec succès depuis Firebase.');
+            listItem.remove()
+        })
+        .catch((error) => {
+            console.error('Erreur lors de la suppression des données depuis Firebase :', error);
+        });
+});
+  
+            // Function to convert timestamp to a formatted time
+            function convertTimestampToTime(timestamp) {
+              const date = new Date(timestamp);
+              const hours = date.getHours();
+              const minutes = date.getMinutes();
+              const seconds = date.getSeconds();
+  
+              // Format the time
+              const formattedTime = `${padZero(hours)}:${padZero(minutes)}:${padZero(seconds)}`;
+              return formattedTime;
+            }
+  
+            // Function to pad a single-digit number with a leading zero
+            function padZero(num) {
+              return num < 10 ? `0${num}` : num;
+            }
+  
+            visitorsList.appendChild(listItem);
+          }
+        }
+  
+        // Display the country count
+        console.log('Country Count:', countryCount);
+  
+        // Create a list item for each country and append it to the list
+        for (const country in countryCount) {
+          const listpays = document.createElement('div');
+          listpays.innerHTML = `
+            <div class="dropdown">
+              <p>${country}<i class="flag-icon flag-icon-${country.toLowerCase()}"></i><span class="countvisite">${countryCount[country]}</span><br>Total Visits: ${countryTotalVisits[country]}</p>
+            </div>
+          `;
+          paysList.appendChild(listpays);
+        }
+  
+        // Display the total number of visits for all countries
+        const totalAllVisitsElement = document.getElementById('totalAllVisits');
+        totalAllVisitsElement.textContent = totalAllVisits;
+  
+      } else {
+        console.log('No data found.');
+      }
+    }).catch(error => {
+      console.error('Error retrieving data:', error);
+    });
+  
+    // Function to filter countries based on search input
+    function filterContent() {
+      const input = document.getElementById('searchInput').value.toUpperCase();
+      const elements = document.getElementsByTagName('div');
+  
+      for (let i = 0; i < elements.length; i++) {
+        const element = elements[i];
+        if (element.textContent.toUpperCase().indexOf(input) > -1) {
+          element.style.display = '';
+        } else {
+          element.style.display = 'none';
+        }
+      }
+    }
+  </script>
+  
+  
+
+  
+  
+  
+  <!-- Add this element to your HTML where you want to display the total number of visits for all countries -->
+  
+  
+  
+  
+
+  
+</body>
+</html>

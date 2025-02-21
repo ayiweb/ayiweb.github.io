@@ -1,0 +1,212 @@
+body{
+    background-color: rgb(255, 255, 255);
+    padding: 0px;
+    margin: 0px;
+}
+.menu{
+    background: rgb(0, 0, 0);
+}
+.menu ul{
+    display: flex;
+}
+.menu ul li{
+    margin: 5px;
+    padding: 5px;
+    color: white;
+    list-style: none;
+    cursor: pointer;
+    border: 1px dashed blue;
+}
+.menu ul li:hover{
+    background-color: aqua;
+}
+
+.container{
+    width: 100%;
+    border: 1px solid blue;
+    margin: 0px;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    overflow-x: hidden;
+  }
+  a{
+    text-decoration: none;
+  }
+  
+  .menu{
+    width: 100%;
+    margin-bottom: 10px;
+    background: rgb(0, 108, 250);
+  }
+
+  .menu ul{
+    display: flex;
+    align-items: center;
+    margin: 1px;
+    margin-left: 0px;
+    padding: 1px;
+    list-style: none;
+  }
+  .menu ul a{
+    font-size: 12px;
+  }
+
+
+ /* CSS pour la section des visiteurs */
+#visitorsList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  /* Styles pour les éléments de visiteurs */
+  #visitorsList > div {
+    width: calc(50% - 20px); /* Moitié de la largeur de son parent avec un espace entre les éléments */
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Styles pour les éléments pays */
+  #paysList > div {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Styles pour les boutons de suppression */
+  .deleteButton {
+    background-color: #ff5252;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .deleteButton:hover {
+    background-color: #ff0000;
+  }
+  
+  /* Styles pour la barre de recherche */
+  #searchInput {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  /* Empêcher les liens de sortir de leurs conteneurs */
+  #visitorsList a, #paysList a {
+    word-wrap: break-word;
+  }
+  
+  /* Media query pour rendre la section réactive */
+  @media screen and (max-width: 768px) {
+    #visitorsList > div {
+      width: 100%; /* Sur les petits écrans, chaque élément prend la largeur complète */
+    }
+  }
+
+  
+  #paysList{
+    background-color: gray;
+    padding: 10px;
+    grid-template-columns: repeat(10, 1fr);
+  }
+
+  #paysList{
+    width: 100%;
+   display: flex;
+    gap: 10px;
+    min-height: 100%;
+    overflow-x: scroll;
+  }
+
+  #paysList > div{
+    min-width: fit-content;
+  }
+
+
+  .visiteur{
+    width: 100%;
+    margin: 10px auto;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    min-height: 100%;
+  }
+ 
+  .visiteur > div{
+    height: max-content;
+    background-color: #fff;
+    border: 1px solid #0095f8;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 0px;
+    padding-bottom: 0px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75);
+-webkit-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75);
+
+  }
+  .visiteur > div p{
+    display: flex;
+    align-items: center;
+    margin: 2px;
+    overflow: hidden;
+    font-size: 12px;
+  }
+  .visiteur > div p:nth-child(1){
+      overflow: hidden;
+  }
+  .countvisite{
+    color: #3498db;
+    margin-left: 10px;
+  }
+    /* Style for the dropdown container */
+    .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+ 
+
+  /* Style for the dropdown content */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+
+  /* Style for the dropdown options */
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    display: block;
+    text-decoration: none;
+  }
+
+  /* Style for the dropdown options on hover */
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+
+  /* Display the dropdown content when the button is hovered */
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
