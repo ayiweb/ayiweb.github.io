@@ -142,6 +142,11 @@
     padding-bottom: 0px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
+  .book .post{
+    border: 3px solid blue;
+    min-width: 100px;
+    max-width: 200px;
+  }
   
   .post .img {
     position: relative;

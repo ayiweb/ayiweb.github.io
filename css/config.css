@@ -53,13 +53,14 @@ footer { bottom: 0; }
     color: white;
     padding: 2px;
     transition: 0.3s;
+    z-index: 109;
 }
 #nav{
     background-color: gray;
     position: relative;
     color: black;
     height: 500px;
-    z-index: 9;
+    z-index: 109;
 }
 .barProfile{
     height: 50px;
@@ -159,18 +160,26 @@ footer { bottom: 0; }
 
 
 
-
+.listfooter{
+    display: flex;
+    gap: 3px;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
 .listfooter span {
     padding: 6px 5px;
-    background-color: #555;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #065df3;
     border-radius: 5px;
+    text-align: center;
     transition: background 0.3s;
 }
 
 .listfooter span a {
     text-decoration: none;
     color: #fff;
-    font-size: 16px;
+    font-size: 12px;
     font-weight: bold;
 }
 
