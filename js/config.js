@@ -55,15 +55,17 @@ function displayFooter() {
     var dynamicMenu = ` 
         <div class="listfooter">
             <span class="btn-footer">
-            <a href="#">Accueil</a>
+            <a href="/index.html">Accueil</a>
             </span>
-            <span>
-            <a href="#">À propos</a>
+            <span class="btn-footer">
+            <a href="">Blog</a>
             </span>
-            <span>
-            <a href="#">Contact</a>
+            <span class="btn-footer">
+            <a href="#">Chaine</a>
             </span>
-            <span></span>
+            <span class="btn-footer">
+            <a href="/statues.html">Statue</a>
+            </span>
         </div>
     `;
     document.getElementById("footer").innerHTML = dynamicMenu;

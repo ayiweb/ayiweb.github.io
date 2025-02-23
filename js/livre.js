@@ -1,10 +1,3 @@
-// Extract the title from the URL
-const urlParams = new URLSearchParams(window.location.search);
-const title = urlParams.get('l');
-console.log(title); // Should output the value of 'l' parameter (e.g., Informatique)
-
-
-
   // Reference to the "posts" node
   var postsRef = database.ref('Livres/');
 
@@ -16,7 +9,7 @@ var postCounter = 0;
 // Listen for changes in the data
 postsRef.on('value', function(snapshot) {
     // Clear existing posts and filter bar
-    document.getElementById('blog').innerHTML = '';
+    document.getElementById('book').innerHTML = '';
     document.getElementById('filter-bar').innerHTML = '';
 
     // Initialize an object to store posts by type
@@ -78,7 +71,7 @@ postsRef.on('value', function(snapshot) {
 
     // Function to display posts
     function displayPosts(posts) {
-        document.getElementById('blog').innerHTML = ''; // Clear existing posts
+        document.getElementById('book').innerHTML = ''; // Clear existing posts
 
         // Loop through posts and display them
         posts.forEach(function(postObj) {
@@ -149,7 +142,7 @@ postsRef.on('value', function(snapshot) {
             `;
             
             // Append the post to the 'anglais' div
-            document.getElementById('blog').appendChild(postDiv);
+            document.getElementById('book').appendChild(postDiv);
         });
     }
 });

@@ -1,246 +1,250 @@
-// Function to format points
-// Fonction pour formater les points
-function formatPoints(points) {
-    // Vérifier si points est numérique
-    if (typeof points === 'number') {
-        return points.toFixed(2); // Formater les points à deux décimales
-    } else {
-        return ''; // Ou retourner une valeur par défaut, selon votre logique
-    }
-}
+// Extract the title from the URL
+const urlParams = new URLSearchParams(window.location.search);
+const title = urlParams.get('l');
+console.log(title); // Should output the value of 'l' parameter (e.g., Informatique)
 
 
-var usersRef = database.ref('users');
-usersRef.orderByChild('Points').on('value', function(snapshot) {
-    document.getElementById('userDetails').innerHTML = '';
 
-    // Convert the snapshot to an array for easier sorting
-    var usersArray = [];
+  // Reference to the "posts" node
+  var postsRef = database.ref('Bolg/');
+
+// Now, you can use the decodedTitle to fetch the details from Firebase or display it on the page
+
+// Counter to keep track of the number of posts added
+var postCounter = 0;
+
+// Listen for changes in the data
+postsRef.on('value', function(snapshot) {
+    // Clear existing posts and filter bar
+    document.getElementById('blog').innerHTML = '';
+    document.getElementById('filter-bar').innerHTML = '';
+
+    // Initialize an object to store posts by type
+    var postsByType = {};
+
+    // Loop through each post in the snapshot
     snapshot.forEach(function(childSnapshot) {
-        var user = childSnapshot.val();
-        user.key = childSnapshot.key;
-        usersArray.push(user);
-    });
-
-    // Sort the users based on their points and stars
-    usersArray.sort(function(a, b) {
-        var starsComparison = calculateStars(b.Points).length - calculateStars(a.Points).length;
-        if (starsComparison !== 0) {
-            return starsComparison;
-        } else {
-            return b.Points - a.Points;
+        var post = childSnapshot.val();
+        var postId = childSnapshot.key;
+        
+        // Check if the post has a type
+        if (post.Type) {
+            // Group posts by type
+            if (!postsByType[post.Type]) {
+                postsByType[post.Type] = [];
+            }
+            postsByType[post.Type].push({ postId: postId, post: post });
         }
     });
 
-    // Iterate through sorted users to display them
-    for (var i = 0; i < 5 && i < usersArray.length; i++) {
-        var user = usersArray[i];
-        var stars = calculateStars(user.Points);
-        var usdAmount = convertPointsToUSD(user.Points); // Calculate USD amount for each user
-        
-        var myusersDiv = document.createElement('div');
-        myusersDiv.className = 'myusers';
-        myusersDiv.setAttribute('data-type', user.Type);
-        myusersDiv.innerHTML = `
-            <div class="img" onclick="btncl('${encodeURIComponent(user.Name || '')}')">
-                <img src="${user.Image || user.LinkImage || '/images/icon.png'}" alt="">
-                <div class="place">${user.Name || ''}</div>
-                <div class="ref">${user.Referal || ''}</div>
-                <div class="points"><span>${formatPoints(user.Points || '')}</span> Rc (<span id="convertpoint">${formatPoints(usdAmount)}</span> HTG)</div>
-                <div class="stars">${stars}</div>
-            </div>
-        `;
-        document.getElementById('userDetails').appendChild(myusersDiv);
-    }
-});
-
-// Function to calculate stars based on points
-function calculateStars(Points) {
-    if (Points >= 100) {
-        return '⭐⭐⭐⭐⭐';
-    } else if (Points >= 80) {
-        return '⭐⭐⭐⭐';
-    } else if (Points >= 60) {
-        return '⭐⭐⭐';
-    } else if (Points >= 40) {
-        return '⭐⭐';
-    } else if (Points >= 20) {
-        return '⭐';
-    } else {
-        return '';
-    }
-}
-
-// Function to convert points to USD
-function convertPointsToUSD(points) {
-    var amount = points * 0.005;
-    return amount.toFixed(2); // Round to two decimal places
-}
-
-
-
-
-
-//------------Articles de la page d'accueil-----------------//
-// RÃ©fÃ©rence Ã  la base de donnÃ©es Firebase
-var presentationsRef = database.ref('COURS/Anglais');
-
-presentationsRef.once('value', function(snapshot) {
-  var presentationsData = snapshot.val();
-  var container = document.getElementById('Articles');
-
-  // Trouver l'article le plus récent en parcourant les données
-  var latestPresentation = null;
-  var latestDate = new Date(0); // Date initiale très ancienne
-
-  for (var presentationKey in presentationsData) {
-    var presentationData = presentationsData[presentationKey];
-
-    // Vérifier si la présentation a une description et si sa date est plus récente que la dernière trouvée
-    if (presentationData.Details && presentationData.SendDateTime) {
-      var presentationDate = new Date(presentationData.SendDateTime);
-
-      if (presentationDate > latestDate) {
-        latestDate = presentationDate;
-        latestPresentation = {
-          id: presentationKey,
-          data: presentationData
-        };
-      }
-    }
-  }
-
-  // Afficher seulement l'article le plus récent s'il existe
-  if (latestPresentation) {
-    var presentationData = latestPresentation.data;
-    var presentationElement = document.createElement('div');
-    presentationElement.className = 'post';
+    // Sort posts by type
+    var sortedTypes = Object.keys(postsByType).sort();
     
-    // Vérifier si une image est disponible ou non
-    if (presentationData.Image) {
-      presentationElement.innerHTML = `
-        <div id="${latestPresentation.id}" class="postId">
-          <h1>${presentationData.Title || ''}</h1>
-          <div class="img">
-            <img src="${presentationData.Image}" alt="">
-          </div>
-          <p id="details">${presentationData.Details}</p>
-          <p id="send-date">${presentationData.SendDateTime}</p>
-        </div>
-        <button class="more" onclick="btncl('${encodeURIComponent(presentationData.Title)}')">
-          Lire la suite...
-        </button>
-      `;
-    } else if (presentationData.VideoId) {
-      // Si aucune image n'est disponible mais un ID vidéo YouTube est présent
-      presentationElement.innerHTML = `
-        <div id="${latestPresentation.id}" class="postId">
-          <h1>${presentationData.Title || ''}</h1>
-          <div class="video-container">
-            <iframe  src="https://www.youtube.com/embed/${presentationData.VideoId}?rel=0" frameborder="0" allowfullscreen></iframe>
-          </div>
-          <p id="details">${presentationData.Details}</p>
-          <p id="send-date">${presentationData.SendDateTime}</p>
-        </div>
-        <button class="more" onclick="btncl('${encodeURIComponent(presentationData.Title)}')">
-          Lire la suite...
-        </button>
-      `;
-    }
-    
-    container.appendChild(presentationElement);
-  }
-});
-
-
-
-
-
-
-
-// RÃ©cupÃ©ration des donnÃ©es depuis Firebase
-presentationsRef.once('value', function(snapshot) {
-  var presentationsData = snapshot.val();
-  var update = document.getElementById('Articles-update');
-
-  // Convertir les données en tableau pour pouvoir trier par date
-  var presentationsArray = [];
-  for (var presentationKey in presentationsData) {
-    presentationsArray.push({
-      id: presentationKey,
-      data: presentationsData[presentationKey]
+    // Create filter button for "All"
+    var allButton = document.createElement('button');
+    allButton.textContent = 'All';
+    allButton.addEventListener('click', function() {
+        displayAllPosts();
     });
-  }
+    document.getElementById('filter-bar').appendChild(allButton);
 
-  // Trier les présentations par date (supposons que la date est dans presentationData.SendDateTime)
-  presentationsArray.sort(function(a, b) {
-    var dateA = new Date(a.data.SendDateTime);
-    var dateB = new Date(b.data.SendDateTime);
-    return dateB - dateA; // Trie par ordre décroissant pour avoir le plus récent en premier
-  });
+    sortedTypes.forEach(function(type) {
+        // Create filter button for each type
+        var filterButton = document.createElement('button');
+        filterButton.textContent = type;
+        filterButton.addEventListener('click', function() {
+            filterPostsByType(type);
+        });
+        document.getElementById('filter-bar').appendChild(filterButton);
+    });
 
-  // Afficher les 4 présentations les plus récentes
-  var count = 0;
-  presentationsArray.forEach(function(presentationItem) {
-    var presentationData = presentationItem.data;
+    // Display all posts by default
+    displayAllPosts();
 
-    // Vérifier si la présentation a un titre et limiter à 4 articles
-    if (presentationData.Title && count < 10) {
-      var presentationElement = document.createElement('div');
-      presentationElement.className = 'post';
-
-      // Vérifier si l'image existe
-      var imageSrc = presentationData.Image ? presentationData.Image : '/images/icon.png';
-
-      presentationElement.innerHTML = `
-        <div class="img">
-          <img src="${imageSrc}" alt="">
-        </div>
-        <div id="${presentationItem.id}" class="postId">
-          <h1>${presentationData.Title}</h1>
-          <button class="more" onclick="btncl('${encodeURIComponent(presentationData.Title)}')">Lire la suite</button>
-          <p>${presentationData.Details}</p>
-          <p class="send-date">${presentationData.SendDateTime}</p>
-        </div>
-      `;
-      update.appendChild(presentationElement);
-      count++;
+    // Function to filter posts by type
+    function filterPostsByType(type) {
+        var postsOfType = postsByType[type];
+        displayPosts(postsOfType);
     }
-  });
+
+    // Function to display all posts
+    function displayAllPosts() {
+        var allPosts = [];
+        sortedTypes.forEach(function(type) {
+            allPosts = allPosts.concat(postsByType[type]);
+        });
+        displayPosts(allPosts);
+    }
+
+    // Function to display posts
+    function displayPosts(posts) {
+        document.getElementById('blog').innerHTML = ''; // Clear existing posts
+
+        // Loop through posts and display them
+        posts.forEach(function(postObj) {
+            var post = postObj.post;
+            var postId = postObj.postId;
+            
+            // Create HTML elements for each post
+           //document.getElementById('splash-screen').style.display = 'none';
+            var postDiv = document.createElement('div');
+            postDiv.className = 'post';
+            postDiv.setAttribute('data-type', post.Type);
+
+            // Convertir la date du post en objet Date
+        var postDate = new Date(post.SendDateTime);
+
+        // RÃ©cupÃ©rer la date actuelle
+        var now = new Date();
+        var timeDifference = now - postDate;
+        var hoursDifference = Math.floor(timeDifference / (1000 * 60 * 60));
+
+        var timeAgo;
+        if (hoursDifference >= 24) {
+            // Si tiene mÃ¡s de 24 horas, mostrar el nÃºmero de dÃ­as
+            var daysDifference = Math.floor(hoursDifference / 24);
+            timeAgo = `${daysDifference} jours`;
+        } else {
+            // De lo contrario, mostrar la diferencia en horas
+            timeAgo = `${hoursDifference} heures`;
+        }
+
+            postDiv.innerHTML = `
+                <div id="${postId}" class="filterDiv_${post.Type} postId">
+                    <div class="img">
+                        <img src="${post.Image || post.LinkImage || ''}" alt="">
+                        <div class="filterDiv cars categorie">${post.Type || ''}</div>
+                    </div>
+
+                    <!--bar comment, dislike, like-->
+                    <div class="barall">
+                        <div class="barcomment">
+                            <i class="fa fa-comment"></i>
+                            <span class="count" id="comment-count-${postId}">
+                                ${post.Zcomments ? formatNumber(Object.keys(post.Zcomments).length) : '0'}
+                            </span>
+                        </div>
+
+                        <div class="barlike">
+                            <i class="fa fa-thumbs-up"></i>
+                            <span id="likecount_${postId}">${formatNumber(post.likes || 0)}</span>
+                        </div>
+
+                        <div class="bardislike">
+                            <i class="fa fa-thumbs-down"></i>
+                            <span id="dislikecount_${postId}">${formatNumber(post.dislikes || 0)}</span>
+                        </div>
+                    </div>
+                    <!--bar comment, dislike, like-->
+
+                    <h1>${post.Title || ''}</h1>
+                    <p>${post.Details || ''}</p>
+                    <p style="display: none;">${post.SousTitre || ''}</p>
+                    
+                    <div class="btnprix">
+                    <p><i class="fa fa-time"></i> ${postDate.toLocaleTimeString()} (${timeAgo} ago)</p>
+                        <button class="more" onclick="btncl('${encodeURIComponent(post.Title || '')}')">Suite</button>
+                    </div>
+                </div>
+            `;
+            
+            // Append the post to the 'anglais' div
+            document.getElementById('blog').appendChild(postDiv);
+        });
+    }
 });
+
 
 function btncl(encodedTitle) {
-  // Décoder le titre encodé
-  const decodedTitle = decodeURIComponent(encodedTitle);
+    // DÃ©coder le titre encodÃ©
+    const decodedTitle = decodeURIComponent(encodedTitle);
 
-  // Remplacer les espaces par des underscores dans le titre
-  const titleWithUnderscores = decodedTitle.replace(/ /g, "_");
+    // Remplacer les espaces par des underscores dans le titre
+    const titleWithUnderscores = decodedTitle.replace(/ /g, "_");
 
-  // Utiliser le titre mis à jour selon vos besoins
-  console.log(titleWithUnderscores);
+    // Utiliser le titre mis Ã  jour selon vos besoins
+    console.log(titleWithUnderscores);
+     // Store the second URL in localStorage
+    // Store the title in localStorage
+    localStorage.setItem('storedTitle', title);
 
-  // Rediriger vers la nouvelle URL avec le titre mis à jour
-  window.location.href = `/s/anglais.html?l=${encodeURIComponent(titleWithUnderscores)}`;
+    // Rediriger vers la nouvelle URL avec le titre mis Ã  jour
+    window.location.href = `/blog/details.html?l=${encodeURIComponent(titleWithUnderscores)}`;
 
 }
 
 
-let slideIndex = 1;
-showSlides();
 
-function showSlides() {
-    let i;
-    let slides = document.getElementsByClassName("mySlides");
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";  
+  /*document.getElementById('toggleSearchBtn').addEventListener('click', function () {
+    var searchContainer = document.getElementById('searchContainer');
+    var buttons = document.querySelectorAll('.btn');
+
+    if (searchContainer.style.display === 'none' || searchContainer.style.display === '') {
+        searchContainer.style.display = 'block';
+        buttons.forEach(function (button) {
+            button.style.display = 'none';
+        });
+    } else {
+        searchContainer.style.display = 'none';
+        buttons.forEach(function (button) {
+            button.style.display = 'block';
+        });
     }
-    slideIndex++;
-    if (slideIndex > slides.length) { slideIndex = 1; }
-    
-    slides[slideIndex - 1].style.display = "block";
-    
-    setTimeout(showSlides, 5000); // Change slide every 2 seconds
+});*/
+
+
+  
+  function formatNumber(number) {
+    if (number >= 1000) {
+        return (number / 1000).toFixed(1) + 'k';
+    } else if (number >= 100) {
+        return (number / 100).toFixed(1) + 'c';
+    } else {
+        return number.toString();
+    }
 }
 
+
+  function filterSelection(category) {
+    var posts = document.getElementsByClassName('post');
+    var searchInput = document.getElementById('searchInput').value.toLowerCase();
+
+    // Loop through posts and show/hide based on category and search input
+    for (var i = 0; i < posts.length; i++) {
+        var postCategory = posts[i].getAttribute('data-type');
+        var sousTitle = posts[i].getElementsByTagName('h1')[0].innerText.toLowerCase();
+
+        // Check if the post matches the category and search input
+        if ((category === 'all' || postCategory === category) &&
+            (sousTitle.includes(searchInput))) {
+            posts[i].style.display = 'block';
+        } else {
+            posts[i].style.display = 'none';
+        }
+    }
+}
+
+// Call filterSelection when a filter button is clicked
+/*document.getElementById('filtrecategorie').addEventListener('click', function (event) {
+    if (event.target.tagName === 'BUTTON') {
+        // Remove 'active' class from all buttons
+        var buttons = document.getElementsByClassName('btn');
+        for (var i = 0; i < buttons.length; i++) {
+            buttons[i].classList.remove('active');
+        }
+
+        // Add 'active' class to the clicked button
+        event.target.classList.add('active');
+
+        // Call filterSelection with the category of the clicked button
+        filterSelection(event.target.getAttribute('data-filter'));
+    }
+});*/
+
+// Add event listener for the search input
+/*document.getElementById('searchInput').addEventListener('input', function () {
+    // Call filterSelection with the current category and updated search input
+    filterSelection(document.querySelector('.btn.active').getAttribute('data-filter'));
+});*/
 
 
