@@ -6,7 +6,7 @@ function save() {
     var image = document.getElementById('imagelink').value.trim();
     var type = document.getElementById('Type').value.trim();
     var details = document.getElementById('details').value.trim();
-    var des = document.getElementById('previewcode').innerHTML.trim(); // Get content from contenteditable div
+    var des = document.getElementById('previewcode').innerText; // Get content from contenteditable div
     const selectedLanguage = document.getElementById('langue').value;
   
     // Basic validation

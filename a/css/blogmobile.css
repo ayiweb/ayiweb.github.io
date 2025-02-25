@@ -69,7 +69,7 @@ img{
         max-width: 100%;
         min-width: 100%;
         border: 1px solid blue;
-        position:absolute;
+        position:fixed;
         top: 0;
         left: 50%;
         transform: translate(-50%);
@@ -308,6 +308,7 @@ select,input
     margin:118px auto 145px;
     min-height: 100%;
     border: 2px solid lime;
+    box-sizing: border-box;
   }
   
   #contenu{
@@ -385,7 +386,7 @@ select,input
 @media only screen and (max-width: 768px){
     
 .allbtn{
-	position: absolute;
+	position: fixed;
 	bottom: 0;
 	left: 0;
 	background-color: blue;
@@ -399,11 +400,11 @@ select,input
 }
 .allbtn button{
 	width: 100%;
-	padding: 3px;
+	padding: 1px;
 }
 
 .btnclose{
-	display: none;
+	display: block;
 	max-width: max-content;
 	background-color: red;
 	border: none;
