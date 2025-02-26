@@ -1,0 +1,398 @@
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #007BFF;
+    color: white;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .user-info {
+    margin-top: 20px;
+  }
+  
+  #usernameDisplay {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  #disconnectBtnSidebar {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: red;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  #disconnectBtnSidebar:hover {
+    background-color: #cc0000;
+  }
+  
+  /* Style du chat */
+  .chat {
+    margin-left: 250px; /* Espace pour la sidebar */
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 20px auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+  }
+  
+  /* Style des messages */
+  .messages {
+    padding: 10px;
+    height: 300px;
+    overflow-y: auto;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .messages div {
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 80%; /* Limite la largeur des bulles de message */
+    word-wrap: break-word;
+    display: inline-block;
+  }
+  
+  .messages .my-message {
+    background-color: #007BFF;
+    color: white;
+    align-self: flex-end;
+  }
+  
+  .messages .other-message {
+    background-color: #f0f0f0;
+    color: #333;
+    align-self: flex-start;
+  }
+  
+  /* Conteneur d'entrée de message */
+  .input-container {
+    display: flex;
+    padding: 10px;
+    background-color: #f9f9f9;
+  }
+  
+  .input-container input {
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .input-container button {
+    padding: 10px 15px;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .input-container button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Responsive styles */
+  @media (min-width: 768px) {
+    .sidebar {
+      width: 300px; /* Sidebar plus large pour les grands écrans */
+    }
+  
+    .chat {
+      margin-left: 300px; /* Ajuster le chat pour la largeur de la sidebar */
+    }
+  }
+  
+  /* Style de la sidebar */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -300px; /* Cacher la sidebar au départ */
+    width: 250px;
+    height: 100%;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    transition: left 0.3s ease; /* Animation pour l'apparition de la sidebar */
+    z-index: 1000;
+  }
+  
+  /* Lorsque la sidebar est active (visible) */
+  .sidebar.show {
+    left: 0; /* Positionne la sidebar à gauche de l'écran */
+  }
+  
+  /* Style de la liste des utilisateurs */
+  .users-list {
+    margin-top: 20px;
+  }
+  
+  .users-list h3 {
+    color: white;
+    font-size: 18px;
+  }
+  
+  .users-list ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .users-list ul li {
+    padding: 10px;
+    border-bottom: 1px solid #444;
+  }
+  
+  .users-list ul li:hover {
+    background-color: #555;
+    cursor: pointer;
+  }
+  
+  /* Style du bouton pour ouvrir la sidebar */
+  .open-sidebar-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+  }
+  
+  .open-sidebar-btn:hover {
+    background-color: #0056b3;
+  }
+  .reply {
+    font-style: italic;
+    color: gray;
+    margin-bottom: 5px;
+  }
+  
+  .my-message {
+    background-color: #a0e1fd; /* Couleur bleue pour les messages envoyés */
+    border-radius: 20px;
+    padding: 10px;
+    margin: 5px 0;
+    display: inline-block;
+    max-width: 60%;
+    text-align: left;
+  }
+  
+  .message {
+    background-color: #f0f0f0; /* Couleur grise pour les messages des autres utilisateurs */
+    border-radius: 20px;
+    padding: 10px;
+    margin: 5px 0;
+    display: inline-block;
+    max-width: 60%;
+    text-align: left;
+  }
+  
+  .reply {
+    font-size: 0.9em;
+    color: gray;
+    margin-top: 5px;
+    font-style: italic;
+  }
+  
+  .delete-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  .delete-btn:hover {
+    background-color: darkred;
+  }
+  
+  
+  
+  #emojiBtn, .open-sidebar-btn {
+    background-color: #25d366; /* Couleur verte similaire à WhatsApp */
+    border: none;
+    color: white;
+    font-size: 20px;
+    padding: 4px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Boutons principaux */
+  #sendBtn {
+    background-color: #25d366; /* Couleur verte similaire à WhatsApp */
+    border: none;
+    color: white;
+    font-size: 14px;
+    padding: 5px;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Bouton "Envoyer" */
+  #sendBtn {
+    background-color: #4CAF50; /* Vert pour le bouton envoyer */
+    font-size: 14px;
+  }
+  
+  #sendBtn:hover {
+    background-color: #45a049; /* Un peu plus foncé au survol */
+  }
+  
+  /* Bouton "Emoji" */
+  #emojiBtn {
+    font-size: 24px; /* Taille des emojis */
+    background-color: #ffeb3b; /* Jaune clair */
+  }
+  
+  #emojiBtn:hover {
+    background-color: #fbc02d; /* Jaune foncé au survol */
+  }
+  
+  /* Sidebar / Liste des utilisateurs */
+  .open-sidebar-btn {
+    position: fixed;
+    top: 1px;
+    right: 10px;
+    padding: 4px;
+    background-color: #34b7f1; /* Bleu WhatsApp */
+    color: white;
+    border-radius: 10px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .open-sidebar-btn:hover {
+    background-color: #128c7e; /* Un peu plus foncé au survol */
+  }
+  
+  /* Container des emojis */
+  #emojiContainer {
+    display: none;
+    position: absolute;
+    bottom: 60px;
+    left: 10px;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+  }
+  
+  /* Emojis individuels */
+  .emoji {
+    font-size: 23px;
+    cursor: pointer;
+    margin: 5px;
+  }
+  
+  .emoji:hover {
+    transform: scale(1.2);
+  }
+  
+  /* Input pour le message */
+  #message {
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+  }
+  
+  #message:focus {
+    outline: none;
+    border-color: #34b7f1;
+  }
+  
+  /* Container pour l'input et les boutons */
+  .input-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: 10px;
+  }
+  
+  /* Affichage des messages */
+  .messages {
+    height: 400px;
+    overflow-y: scroll;
+    padding: 10px;
+    background-color: #fffff;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  /* Réponses aux messages */
+  .reply {
+    font-size: 12px;
+    color: #555;
+    margin-top: 5px;
+  }
+  
+  /* Style pour les messages supprimés */
+  .delete-btn {
+    background: none;
+    border: none;
+    color: red;
+    cursor: pointer;
+    font-size: 12px;
+    margin-left: 10px;
+  }
+  
+  .delete-btn:hover {
+    text-decoration: underline;
+  }
+  
+  /* Style pour la liste des utilisateurs */
+  
+  
+  .users-list ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .users-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .users-list h3 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  #confirmationMessage {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+    z-index: 1000;
+  }
+  

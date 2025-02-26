@@ -145,7 +145,7 @@
   .book .post{
     border: 3px solid blue;
     min-width: 100px;
-    max-width: 200px;
+    max-width: 100px;
   }
   
   .post .img {

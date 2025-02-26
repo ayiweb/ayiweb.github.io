@@ -46,7 +46,7 @@ function displayPosts(posts) {
                 <div class="filterDiv cars categorie">${post.Type || ''}</div>
             </div>
             <h1>${post.Title || ''}</h1>
-            <p>${post.Description || ''}</p>
+           <p>${post.Description || ''}</p>
             <p style="display: none;">${post.SousTitle || ''}</p>
             <div class="btnprix" style="display:none;">
                 <button class="more" onclick="btncl('${encodeURIComponent(post.Title || '')}')">Voire la suite</button>
