@@ -1,0 +1,129 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow-x: hidden;
+}
+a{
+    text-decoration: none;
+}
+
+/* Header */
+header {
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+header p{
+    font-size: 14px;
+}
+
+.menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Sidebar */
+#sidebar {
+    position: fixed;
+    top: 0;
+    right: -250px;
+    width: 250px;
+    height: 100%;
+    background: #333;
+    color: white;
+    transition: 0.3s;
+    padding-top: 60px;
+    z-index: 109;
+}
+
+#sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+#sidebar ul li {
+    padding: 15px;
+}
+
+#sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Main content */
+main {
+    background-color: white;
+    flex: 1;
+    padding: 8px 2px;
+    margin: 70px 0;
+    border: 1px solid lime;
+}
+
+.cardHome {
+    background: #f9f9f9;
+    padding: 2px;
+    border-radius: 10px;
+    text-align: center;
+}
+.cardHome p{
+    font-size: 14px;
+    margin: 10px;
+}
+.cardHome button{
+    padding: 5px 20px;
+}
+
+/* Footer */
+footer {
+    background-color: #fff;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 10px 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.footer-menu {
+    display: flex;
+    justify-content: space-around;
+}
+.footer-menu a{
+    display: inline-block;
+    font-size: 16px;
+    text-align: center;
+}
+.footer-menu span{
+    font-size: 12px;
+    display: block;
+    text-align: center;
+}
+.footer-menu a span:nth-child(1){
+    display: block;
+    font-size: 18px;
+}
