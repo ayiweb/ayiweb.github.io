@@ -80,3 +80,7 @@ function logout() {
     console.log("Logging out...");
     window.location.reload();
 }
+
+function chaine(){
+    window.location.href='/chaine.html';
+}

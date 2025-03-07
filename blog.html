@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AyiWeb</title>
+    <link rel="stylesheet" href="css/confing.css">
+    <link rel="stylesheet" href="css/blog.css">
+</head>
+<body>
+    <div id="menue"></div>
+    <div id="splash-screen"></div>
+    <div class="alert"></div>
+    <footer id="footer"></footer>
+    <div class="placement">
+        <div class="usersdetails" id="userDetails"></div>
+    </div>
+
+    <!-- Contenu principal -->
+    <main>
+        <section class="card">
+            <section style="display: none;">
+                <div id="filter-bar"></div>
+        <div class="search" id="searchContainer">
+            <input type="text" id="searchInput" placeholder="Search by SousTitle">
+        </div>
+        <select id="type-select" style="display: none;">
+            <option value="">Sélectionner un type</option>
+        </select>
+    </section>
+            <div id="blog" id="filter-bar"></div>
+        </section>
+    </main>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-database.js"></script>
+
+    <script src="js/asset.js" defer></script>
+    <script src="js/config.js" defer></script>
+    <script src="js/script.js" defer></script>
+    <script src="js/blog.js" defer></script>
+</body>
+</html>

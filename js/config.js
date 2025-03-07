@@ -1,75 +1,75 @@
-// Function to display dynamic content
-function displayprofile() {
-    var userData = JSON.parse(localStorage.getItem('userData'));
-    if (userData) {
-        var dynamicMenu = `
-            <div class="users">
-                <p><span>Nom: ${userData.name}</span></p>
-                <p><span>Solde: ${userData.balance} €</span></p>
-            </div>
-        `;
-        document.getElementById("profile_bar").innerHTML = dynamicMenu;
-    } else {
-        document.getElementById("profile_bar").innerHTML = dynamicMenu;
-    }
-}
-displayprofile();
-
-
-
 document.addEventListener('DOMContentLoaded', () => {
-    var menu = document.getElementById('nav');
-    var userData = JSON.parse(localStorage.getItem('userData'));
-    var isLoggedIn = userData !== null;
-
+    var menu = document.getElementById('menue');
     const content = `
-        <nav class="menu">
-            <div class="art-myuser">
-                <div>
-                    <img id="image" src="images/icon.png" alt="">
-                </div>
-                <div>
-                    <p id="name">${isLoggedIn ? userData.name : 'Invité'}</p>
-                    <p id="rc">${isLoggedIn ? userData.balance + ' €' : '0.00 €'}</p>
-                    <p id="phone">${isLoggedIn ? userData.phone : 'Non disponible'}</p>
-                    <p id="email">${isLoggedIn ? userData.email : 'Non disponible'}</p>
-                </div>
-                ${isLoggedIn ? `
-                    <p id="logout"><a onclick="logout()"><i class="fa fa-unlock"></i> Déconnectez</a></p>
-                ` : `<p id="connecte" onclick="openform()"><i class="fa fa-lock"></i> Connectez</p>`}
-            </div>
-            <ul>
-                <li><a href="/index.html">Accueil</a></li>
-                <li><a href="/Blog.html">Blog</a></li>
-                <li><a href="/index.html#about">À propos</a></li>
-            </ul>
-        </nav>   
+    <header>
+        <div class="menu-icon" id="openMenu">☰</div>
+        <h1>AYIWEB</h1>
+    </header>
+
+<nav id="sidebar">
+    <div class="close-btn" id="closeMenu">&times;</div>
+    <ul>
+        <li><a href="#" onclick="closeMenu()">Accueil</a></li>
+        <li><a href="#" onclick="closeMenu()">Profil</a></li>
+        <li><a href="#" onclick="closeMenu()">Messages</a></li>
+        <li><a href="#" onclick="closeMenu()">Paramètres</a></li>
+    </ul>
+</nav>
     `;
     menu.innerHTML = content;
+
+            // Ajout des événements pour ouvrir/fermer le menu
+            document.getElementById("openMenu").addEventListener("click", function() {
+                document.getElementById("sidebar").style.left= "0";
+            });
+    
+            document.getElementById("closeMenu").addEventListener("click", function() {
+                document.getElementById("sidebar").style.left = "-250px";
+            });
+});
+
+function closeMenu(){
+    document.getElementById("sidebar").style.left = "-250px";
+}
+//footer de mon site web
+document.addEventListener('DOMContentLoaded', () => {
+
+    var footers= document.getElementById('footer');
+    const content = `
+        <div class="footer-menu">
+        <a href="/index.html"><span>🏹</span><span>Accueil</span></a>
+        <a style="display:none" href=""><span>🔍</span><span>Chercher</span></a>
+        <a href=""><span>➕</span><span>Chaine</span></a>
+        <a  href="/blog.html"><span>🌍</span><span>Blog</span></a>
+        <a href=""><span>💬</span><span>Messages</span></a> 
+        </div>
+    `;
+    footers.innerHTML = content;
 });
 
 
 
-// Function to display dynamic content
-function displayFooter() {
-    var dynamicMenu = ` 
-        <div class="listfooter">
-            <span class="btn-footer">
-            <a href="/index.html">Accueil</a>
-            </span>
-            <span class="btn-footer">
-            <a href="">Blog</a>
-            </span>
-            <span class="btn-footer">
-            <a href="#">Chaine</a>
-            </span>
-            <span class="btn-footer">
-            <a href="/statues.html">Statue</a>
-            </span>
-        </div>
-    `;
-    document.getElementById("footer").innerHTML = dynamicMenu;
-}
 
-// Call the function to display dynamic content
-displayFooter();
+/*document.addEventListener('DOMContentLoaded', () => {
+    alert('hello');
+    var menu = document.getElementById('menue');
+    const content = `
+
+    `;
+     menu.innerHTML = content;
+});*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
