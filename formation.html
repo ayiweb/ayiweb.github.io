@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-database.js"></script>
+
+    
+    <title>AyiWeb - Formation</title>
+    <link rel="stylesheet" href="css/confing.css">
+    <link rel="stylesheet" href="css/formation.css">
+</head>
+<body>
+    <div id="menue"></div>
+    <footer id="footer"></footer>
+
+
+    <!-- Contenu principal -->
+    <main>
+        <section class="card home">
+            <h2>FORMATION DISPONIBLE</h2>
+            <h3>Utiliser votre android en bonne condition et proteger votre vie prive</h3>
+            <button>Je veux Participer</button>
+            <p>Date : 29, 30 Mars 🤔</p>
+        </section>
+
+        <section class="card utilisateur">
+            <div id="inscrit"></div>
+        </section>
+
+        <section class="card details">
+            <ul>
+                <h4>Initiation android</h4>
+                <li>Configuratiton Android</li>
+                <li>Creation et connection compte Gmail</li>
+            </ul>
+
+            <ul>
+                <h4>Proteger votre vie prive</h4>
+                <li>Comprendre le piratage</li>
+                <li>Comprendre le Arnaque et crack</li>
+                <li>Base piratge compte facebook etc...</li>
+            </ul>
+            <p><i>Utiliser votre android pour apprendre</i></p>
+        </section>
+
+        <section class="card formulaire">
+            <form action="" name="inscription">
+                <h1>Formulaire d'inscription</h1>
+                <p>Remplire le formulaire pour Participer</p>
+                <div class="input"><input type="text" id="name" placeholder="Entrer votre nom complet" required></div>
+                <div class="input"><input type="text" id="email" placeholder="Entrer votre Email" required></div>
+                <div class="input"><input type="text" id="phone" placeholder="Entrer votre Numero" required></div>
+                <div class="input"><input type="text" id="adresse" placeholder="Entrer votre Adresse" required></div>
+                <input type="submit" class="button">
+            </form>
+
+        </section>
+    </main>
+    
+     <script type="module" src="js/formation.js" defer></script>
+    
+   
+    <script src="js/config.js" defer></script>
+    
+
+
+</body>
+</html>
