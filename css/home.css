@@ -1,3 +1,53 @@
+.cardChaine{
+  display: flex;
+  gap: 5px;
+}
+
+.cardChaine .cardItem {
+  width: 100%;
+  background: #f9f9f9;
+  padding: 2px;
+  margin: 5px auto;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.cardChaine .cardItem h3{
+  font-size: 14px;
+  text-align: center;
+  color: #0075fc;
+}
+
+.cardChaine .cardItem h4{
+  font-size: 12px;
+  text-align: center;
+  color: #fc3700;
+}
+
+.cardChaine .cardItem button{
+  font-size: 12px;
+  margin: 4px 10px;
+  border: none;
+
+}
+
+.cardHome {
+  background: #f9f9f9;
+  padding: 2px;
+  margin: 5px auto;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.cardHome p{
+  font-size: 14px;
+  margin: 10px;
+}
+.cardHome button{
+  padding: 5px 20px;
+}
+  
+  
   .search {
     width: 100%; /* Adjust width as needed */
     margin: auto;
@@ -126,7 +176,6 @@
     overflow-x: scroll;
     margin: auto;
     gap: 10px;
-    min-height: 100%;
   }
   
   .post {

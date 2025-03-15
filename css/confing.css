@@ -10,7 +10,7 @@ body {
     font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 100%;
     overflow-x: hidden;
 }
 a{
@@ -29,6 +29,7 @@ header {
     top: 0;
     width: 100%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 109;
 }
 header p{
     font-size: 14px;
@@ -46,11 +47,11 @@ header p{
     right: -250px;
     width: 250px;
     height: 100%;
-    background: #333;
-    color: white;
+    background: #f8f4f4;
+    color: rgb(3, 3, 3);
     transition: 0.3s;
     padding-top: 60px;
-    z-index: 109;
+    z-index: 110;
 }
 
 #sidebar ul {
@@ -59,11 +60,11 @@ header p{
 }
 
 #sidebar ul li {
-    padding: 15px;
+    padding: 5px;
 }
 
 #sidebar ul li a {
-    color: white;
+    color: rgb(0, 0, 0);
     text-decoration: none;
     display: block;
 }
@@ -78,26 +79,16 @@ header p{
 
 /* Main content */
 main {
+    position: static;
+    height: max-content;
     background-color: white;
     flex: 1;
     padding: 8px 2px;
-    margin: 70px 0;
-    border: 1px solid lime;
+    margin-top: 70px;
+    margin-bottom: 70px;
 }
 
-.cardHome {
-    background: #f9f9f9;
-    padding: 2px;
-    border-radius: 10px;
-    text-align: center;
-}
-.cardHome p{
-    font-size: 14px;
-    margin: 10px;
-}
-.cardHome button{
-    padding: 5px 20px;
-}
+
 
 /* Footer */
 footer {
@@ -107,6 +98,7 @@ footer {
     width: 100%;
     padding: 10px 0;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 109;
 }
 
 .footer-menu {
