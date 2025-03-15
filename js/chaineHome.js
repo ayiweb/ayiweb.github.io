@@ -97,51 +97,9 @@
                           </div> 
                           <hr>
                           <h4 class="details">${post.Details || ''}</h4>
-                          <p class="desc" id="des_${postId}">${post.Description || ''}</p>
-                          <p class="time"><i class="fa fa-time"></i> ${postDate.toLocaleTimeString()} (${timeAgo} ago)</p>
                           <div class="btncard">
-                              <button><i class="fa fa-whatsapp"></i><a id="lienchaine_${postId}" href="${post.LienChaine || ''}">Suivre</a></button>
+                              <button><i class="fa fa-whatsapp"></i><a id="lienchaine_${postId}" href="${post.LienChaine || ''}">Suivre cette chaine</a></button>
                           </div>
-                          <div class="btnpartage" >
-                              <div class="barcomment">
-                                  
-                                  <button onclick="toggleComments('${postId}')">                                  <i class="fa fa-comment"></i>
-                                  </button>
-                                  <span class="count" id="comment-count-${postId}">
-                                      ${post.Zcomments ? formatNumber(Object.keys(post.Zcomments).length) : '0'}
-                                  </span>
-                              </div>
-                              <div class="barlike">
-                                  <button onclick="likePost('${postId}')"><i class="fa fa-thumbs-up"></i></button>
-                                  <span id="likecount_${postId}">${formatNumber(post.likes || 0)}</span>
-                              </div>
-
-                              <div class="bardislike">
-                                  <button onclick="dislikePost('${postId}')"><i class="fa fa-thumbs-down"></i></button>
-                                  <span id="dislikecount_${postId}">
-                                    ${post.Dislikes ? formatNumber(Object.keys(post.Dislikes).length) : '0'}
-                                  </span>
-
-                              </div>
-
-                              <div class="btnpartage">
-                                    <span onclick="whatsapp('${postId}')"><i class="fa fa-whatsapp"></i></span>
-                                    <span onclick="facebook('${postId}')"><i class="fa fa-facebook"></i></span>
-                                    <span onclick="twitter('${postId}')"><i class="fa fa-twitter"></i></span>
-                                    <span class="lireLaSuite" style="display: none;"><i>Lire la suite...</i></span>
-                                </div>
-                              
-                              <span style="display: none;" class="more lireLaSuite" onclick="btncl('${encodeURIComponent(post.Title || '')}')"><i>Lire la suite</i></span>
-                          </div>
-                          <div id="comments-${postId}" style="display: none;">
-                              <h3>Commentaires</h3>
-                              <div id="comments-list-${postId}" class="comments-list"></div> <!-- Container for comments -->
-                              <form id="comment-form-${postId}" class="comment-form" onsubmit="return addComment(event, '${postId}')">
-                                  <input type="text" id="comment-input-${postId}" placeholder="Ajouter un commentaire..." required>
-                                  <button type="submit"><i class="fa fa-send"></i></button>
-                              </form>
-                          </div>
-                      </div>
                   </div>
               </div>
           `;
