@@ -1,0 +1,89 @@
+.card {
+    background: #f9f9f9;
+    padding: 2px;
+    margin: 5px auto;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  .card h2{
+    color: blue;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+  }
+  .card h3{
+    color: orange;
+    font-size: 14px;
+    margin: 10px;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  .card h4{
+    color: orangered;
+    font-size: 14px;
+  }
+  .card p{
+    font-size: 14px;
+    margin: 10px;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  .card button{
+    padding: 5px 20px;
+  }
+  .card h4{
+    text-align: left;
+    margin: 10px 10px 10px 5px;
+    font-family: 'Times New Roman', Times, serif;
+  }
+   .card ul li{
+    text-align: left;
+    margin: 4px 20px;
+    font-size: 14px;
+    font-family: 'Times New Roman', Times, serif;
+   }
+   .card i{
+    font-size: 14px;
+    font-family: 'Times New Roman', Times, serif;
+   }
+
+   
+
+   .formulaire{
+    border: 2px solid red;
+    min-width: 250px;
+    max-width: 350px;
+    display: none;
+   }
+   .formulaire h1{
+    font-size: 16px;
+   }
+
+   .formulaire form{
+    display: inline-block;
+    width: 100%;
+    padding:4px;
+   }
+   .formulaire .input{
+    width: 100%;
+    margin: 5px auto;
+    overflow: hidden;
+    border: 1px solid gray;
+    display: inline-block;
+    border-radius: 20px;
+   }
+   .formulaire .input input{
+    padding: 7px;
+    width: 98%;
+    border: none;
+   }
+   .formulaire .input input:focus{
+    outline: none;
+   }
+   .button{
+    background-color: blue;
+    padding: 7px;
+    color: white;
+    border: none;
+    width: 100%;
+    border-radius: 20px;
+   }
