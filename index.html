@@ -17,6 +17,7 @@
     
     <link rel="stylesheet" href="css/confing.css">
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/chain.css">
 </head>
 <body>
     <div id="menue"></div>
@@ -33,13 +34,59 @@
                 <option value="">Sélectionner un type</option>
             </select>
         </section>
+        <div id="chaine">
+            <div class="cardChaine">
+                <div class="cardItem">
+                    <div class="textItem">
+                        <div class="img">
+                            <img src="${post.Image || post.LinkImage || '/images/icon.png'}" alt="">
+                            <h3 class="Title">AyiWeb</h3>
+                        </div> 
+                        <hr>
+                        <h4>Informatique</h4>
+                        <button>Suivre</button>
+                    </div>
+                </div>
+
+                <div class="cardItem">
+                    <div class="textItem">
+                        <div class="img">
+                            <img src="${post.Image || post.LinkImage || '/images/icon.png'}" alt="">
+                            <h3 class="Title">AyiLangage</h3>
+                        </div> 
+                        <hr>
+                        <h4>Exp Langue</h4>
+                        <button>Suivre</button>
+                    </div>
+                </div>
+
+                <div class="cardItem">
+                    <div class="textItem">
+                        <div class="img">
+                            <img src="${post.Image || post.LinkImage || '/images/icon.png'}" alt="">
+                            <h3 class="Title">AyiLRDP</h3>
+                        </div> 
+                        <hr>
+                        <h4>Humour</h4>
+                        <button>Suivre</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <section class="cardHome">
             <h1>Bienvenue sur AyiWeb</h1>
             <p>Astuces informatiques, SMS d'amour Expressions langues et efficacement.</p>
-            <button>Amis</button>
             <p id="messages">Introverti(e) 🤔</p>
         </section>
-        <div id="blog" id="filter-bar"></div>
+
+        <div id="blog" id="filter-bar">
+            <section class="cardHome">
+                <img src="/images/blog.png" alt="">
+                <h4>Retrouvez tous nos articles</h4>
+                <p> Prennez le temps pour lire nos articles, pour enrichire votre connaissance gratuitement</p>
+                <a href="chaine.html"><button>Vore notre blog</button></a>
+            </section>
+        </div>
         <div id="book" class="book"></div>
     </main>
 
@@ -50,5 +97,6 @@
     <script src="js/asset.js" defer></script>
     <script src="js/config.js" defer></script>
     <script src="js/blog.js" defer></script>
+    <script src="js/chaineHome.js" defer></script>
 </body>
 </html>
