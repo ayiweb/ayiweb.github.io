@@ -31,8 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const btnParticiper = document.querySelector(".home button");
   const formulaire = document.querySelector(".formulaire");
   const inscriptionMessage = document.querySelector("#inscrit");
-  alert("Veuillez remplir tous les champs !");
-
+  
   // Afficher le formulaire quand on clique sur le bouton "Je veux Participer"
   btnParticiper.addEventListener("click", function () {
     document.querySelector('.details').style.display = 'none';
