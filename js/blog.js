@@ -143,7 +143,7 @@ postsRef.on('value', function(snapshot) {
                     
                     <div class="btnprix">
                     <p><i class="fa fa-time"></i> ${postDate.toLocaleTimeString()} (${timeAgo} ago)</p>
-                        <button class="more" onclick="btncl('${encodeURIComponent(post.Title || '')}')">Suite</button>
+                        <button class="more" onclick="btnblog('${encodeURIComponent(post.Title || '')}')">Suite</button>
                     </div>
                 </div>
             `;
@@ -155,7 +155,7 @@ postsRef.on('value', function(snapshot) {
 });
 
 
-function btncl(encodedTitle) {
+function btnblog(encodedTitle) {
     // DÃ©coder le titre encodÃ©
     const decodedTitle = decodeURIComponent(encodedTitle);
 
