@@ -2,22 +2,11 @@
     display: none;
   }
   
-  .header{
-    border: 2px solid red;
-    overflow: hidden;
-    position: relative;
-  }
   iframe {
     margin-top: 20px;
     width: 100%;
   }
-    /* Ajoutez ici la valeur de la marge supĆ©rieure souhaitĆ©e */
-  header{
-    border: 2px solid red;
-    height: 30px;
-    position: absolute;
-    z-index: 0;
-  }
+ 
   
   #toggleSearchBtn {
     text-align: center;
